@@ -1,0 +1,219 @@
+.freeBSDAMP{
+    background: url(../img/aplications_icons.png) -530px 0;
+}
+.LAMP{
+    background: url(../img/aplications_icons.png) -796px 0;
+}
+.LEMP{
+    background: url(../img/aplications_icons.png) -862px 0;
+}
+.MEAN{
+    background: url(../img/aplications_icons.png) -994px 0;
+}
+.Joomla{
+    background: url(../img/aplications_icons.png) -728px 0;
+}
+.Drone{
+    background: url(../img/aplications_icons.png) -332px 0;
+}
+.Ghost{
+    background: url(../img/aplications_icons.png) -596px 0;
+}
+.Rails{
+    background: url(../img/aplications_icons.png) -1522px 0;
+}
+.Drupal{
+    background: url(../img/aplications_icons.png) -398px 0;
+}
+.MongoDB{
+    background: url(../img/aplications_icons.png) -1126px 0;
+}
+.Node{
+    background: url(../img/aplications_icons.png) -1258px 0;
+}
+.Cassandra{
+    background: url(../img/aplications_icons.png) 0 0;
+}
+.Stack{
+    background: url(../img/aplications_icons.png) -464px 0;
+}
+.Django{
+    background: url(../img/aplications_icons.png) -134px 0;
+}
+.Docker{
+    background: url(../img/aplications_icons.png) -200px 0;
+}
+.Magento{
+    background: url(../img/aplications_icons.png) -928px 0;
+}
+.GitLab{
+    background: url(../img/aplications_icons.png) -662px 0;
+}
+.MumbleServer{
+    background: url(../img/aplications_icons.png) -1192px 0;
+}
+.MediaWiki{
+    background: url(../img/aplications_icons.png) -1060px 0;
+}
+.WordPress{
+    background: url(../img/aplications_icons.png) -1588px 0;
+}
+.OwnCloud{
+    background: url(../img/aplications_icons.png) -1324px 0;
+}
+.Dokku{
+    background: url(../img/aplications_icons.png) -266px 0;
+}
+.PHPMyAdmin{
+    background: url(../img/aplications_icons.png) -1390px 0;
+}
+.Redmine{
+    background: url(../img/aplications_icons.png) -1456px 0;
+}
+
+.freeBSDAMP, .LAMP, .LEMP, .MEAN, .Joomla, .Drone, .Ghost, .Rails, .Drupal, .MongoDB, .Node, .Cassandra, .Stack, .Django, .Docker, .Magento, .GitLab, .MumbleServer, .MediaWiki, .WordPress, .OwnCloud, .Dokku, .PHPMyAdmin, .Redmine{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 34px;
+    height: 34px;
+    border: 0;
+    margin-right: 10px;
+}
+
+.pricing-table:hover .bullet-item .freeBSDAMP, .pricing-table:hover .bullet-item .LAMP, .pricing-table:hover .bullet-item .LEMP, .pricing-table:hover .bullet-item .MEAN, .pricing-table:hover .bullet-item .Joomla, .pricing-table:hover .bullet-item .Drone, .pricing-table:hover .bullet-item .Ghost, .pricing-table:hover .bullet-item .Rails, .pricing-table:hover .bullet-item .Drupal, .pricing-table:hover .bullet-item .MongoDB, .pricing-table:hover .bullet-item .Node, .pricing-table:hover .bullet-item .Cassandra, .pricing-table:hover .bullet-item .Stack, .pricing-table:hover .bullet-item .Django, .pricing-table:hover .bullet-item .Docker, .pricing-table:hover .bullet-item .Magento, .pricing-table:hover .bullet-item .GitLab, .pricing-table:hover .bullet-item .MumbleServer, .pricing-table:hover .bullet-item .MediaWiki, .pricing-table:hover .bullet-item .WordPress, .pricing-table:hover .bullet-item .OwnCloud, .pricing-table:hover .bullet-item .Dokku, .pricing-table:hover .bullet-item .PHPMyAdmin, .pricing-table:hover .bullet-item .Redmine{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
+.Apache{
+    background: url(../img/services_icons.png) -40px -2px;
+}
+.Nginx{
+    background: url(../img/services_icons.png) -2px -2px;
+}
+.Unicorn{
+    background: url(../img/services_icons.png) -420px -2px;
+}
+.Sinatra{
+    background: url(../img/services_icons.png) -344px -2px;
+}
+.GitHub{
+    background: url(../img/services_icons.png) -154px -2px;
+}
+.Bitbucket{
+    background: url(../img/services_icons.png) -78px -2px;
+}
+.Jenkins{
+    background: url(../img/services_icons.png) -268px -2px;
+}
+.Travis{
+    background: url(../img/services_icons.png) -382px -2px;
+}
+.Wercker{
+    background: url(../img/services_icons.png) -496px -2px;
+}
+.Heroku{
+    background: url(../img/services_icons.png) -230px -2px;
+}
+.Ruby{
+    background: url(../img/services_icons.png) -306px -2px;
+}
+.Haskell{
+    background: url(../img/services_icons.png) -192px -2px;
+}
+.Emacs{
+    background: url(../img/services_icons.png) -116px -2px;
+}
+.VIM{
+    background: url(../img/services_icons.png) -458px -2px;
+}
+
+.Apache, .Nginx, .Unicorn, .Sinatra, .GitHub, .Bitbucket, .Jenkins, .Travis, .Wercker, .Heroku, .Ruby, .Haskell, .Emacs, .VIM{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 34px;
+    height: 34px;
+    border: 0;
+    margin-right: 10px;
+}
+
+.pricing-table:hover .bullet-item .Apache, .pricing-table:hover .bullet-item .Nginx, .pricing-table:hover .bullet-item .Unicorn, .pricing-table:hover .bullet-item .Sinatra, .pricing-table:hover .bullet-item .GitHub, .pricing-table:hover .bullet-item .Bitbucket, .pricing-table:hover .bullet-item .Jenkins, .pricing-table:hover .bullet-item .Travis, .pricing-table:hover .bullet-item .Wercker, .pricing-table:hover .bullet-item .Heroku, .pricing-table:hover .bullet-item .Ruby, .pricing-table:hover .bullet-item .Haskell, .pricing-table:hover .bullet-item .Emacs, .pricing-table:hover .bullet-item .VIM{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
+.amazon_web_services{
+    background: url(../img/serverprovider_icons.png) 0 0;
+}
+.digital_ocean{
+    background: url(../img/serverprovider_icons.png) -150px 0;
+}
+.google_cloud{
+    background: url(../img/serverprovider_icons.png) -300px 0;
+}
+
+.amazon_web_services, .digital_ocean, .google_cloud{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 150px;
+    height: 150px;
+    border: 0;
+}
+
+.pricing-table:hover .price .amazon_web_services, .pricing-table:hover .price .digital_ocean, .pricing-table:hover .price .google_cloud{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
+.Ubuntu{
+    background: url(../img/distribution_icons.png) -555px 0;
+}
+.FreeBSD{
+    background: url(../img/distribution_icons.png) -445px 0;
+}
+.Fedora{
+    background: url(../img/distribution_icons.png) -335px 0;
+}
+.Debian{
+    background: url(../img/distribution_icons.png) -225px 0;
+}
+.CoreOS{
+    background: url(../img/distribution_icons.png) -115px 0;
+}
+.CentOS{
+    background: url(../img/distribution_icons.png) -5px 0;
+}
+
+.Ubuntu, .FreeBSD, .Fedora, .Debian, .CoreOS, .CentOS{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 100px;
+    height: 100px;
+    border: 0;
+}
+
+.pricing-table:hover .price .Ubuntu, .pricing-table:hover .price .FreeBSD, .pricing-table:hover .price .Fedora, .pricing-table:hover .price .Debian, .pricing-table:hover .price .CoreOS, .pricing-table:hover .price .CentOS{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
+.sidebar{
+    position: fixed;
+    top: 50px;
+}
