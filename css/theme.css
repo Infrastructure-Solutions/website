@@ -1,3 +1,10 @@
+.active li img{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
 .freeBSDAMP{
     background: url(../img/aplications_icons.png) -530px 0;
 }
@@ -211,6 +218,10 @@
     -moz-filter: none;
     -o-filter: none;
     -ms-filter: none;
+}
+
+.pricing-table{
+    cursor:pointer;
 }
 
 .sidebar{
