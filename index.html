@@ -13,7 +13,8 @@
   <div data-magellan-expedition="fixed">
     <div class="row">
       <dl class="sub-nav">
-        <dd data-magellan-arrival="project-configuration"><a href="#project-configuration">Project Configuration</a></dd>
+        <dd data-magellan-arrival="project-configuration" class="active"><a href="#project-configuration">Project Configuration</a></dd>
+        <dd data-magellan-arrival="automation-software"><a href="#automation-software">Automation Software</a></dd>
         <dd data-magellan-arrival="server-provider"><a href="#server-provider">Server Provider</a></dd>
         <dd data-magellan-arrival="distribution"><a href="#distribution">Distribution</a></dd>
         <dd data-magellan-arrival="aplications"><a href="#aplications">Aplications</a></dd>
@@ -24,206 +25,282 @@
 
   <div class="row">
     <div class="large-10 columns">
-      <div class="row">
-        <h1>Infraestructura Automatizada Como Servicio</h1>
-      </div>
-
       <div class="row" data-magellan-destination="project-configuration" id="project-configuration">
+        <h1>Create a Service</h1>
         <h3>Project Name</h3>
         <div class="large-12 columns">
           <form>
             <div class="row">
               <div class="large-12 columns">
-                <input type="text" placeholder="Name your project" />
+                <input type="text" id="input-project_name" placeholder="Name your project" />
               </div>
             </div>
           </form>
         </div>
       </div>
 
-      <div class="row" data-magellan-destination="server-provider" id="server-provider">
+      <div class="row" data-magellan-destination="automation-software" id="automation-software" data-equalizer>
+        <h3>Select Automation Software</h3>
+        <div class="large-4 medium-6 small-6 columns" data-equalizer-watch>
+          <ul class="pricing-table active" data-name="puppet" data-type="automation-software" data-id="0">
+            <li class="price"><img class="puppet small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+            <li class="bullet-item">Puppet</li>
+          </ul>
+        </div>
+        <div class="large-4 medium-6 small-6 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="ansible" data-type="automation-software" data-id="1">
+            <li class="price"><img class="ansible small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+            <li class="bullet-item">Ansible</li>
+          </ul>
+        </div>
+        <div class="large-4 medium-6 small-6 columns end" data-equalizer-watch>
+          <ul class="pricing-table" data-name="chef" data-type="automation-software" data-id="2">
+            <li class="price"><img class="chef small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+            <li class="bullet-item">Chef</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row" data-magellan-destination="server-provider" id="server-provider" data-equalizer>
         <h3>Select Server Provider</h3>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="amazon_web_services" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-6 small-6 columns" data-equalizer-watch>
+          <ul class="pricing-table active" data-name="amazon_web_services" data-type="server-provider" data-id="0">
+            <li class="price"><img class="amazon_web_services small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">Amazon Web Services</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="digital_ocean" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-6 small-6 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="digital_ocean" data-type="server-provider" data-id="1">
+            <li class="price"><img class="digital_ocean small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">Digital Ocean</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="google_cloud" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-6 small-6 columns end" data-equalizer-watch>
+          <ul class="pricing-table" data-name="google_cloud" data-type="server-provider" data-id="2">
+            <li class="price"><img class="google_cloud small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">Google Cloud</li>
+          </ul>
+        </div>
+        <div class="large-3 medium-6 small-6 columns end" data-equalizer-watch>
+          <ul class="pricing-table" data-name="none" data-type="server-provider" data-id="3">
+            <li class="price"><img class="none small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+            <li class="bullet-item">None</li>
           </ul>
         </div>
       </div>
 
       <div class="row" data-magellan-destination="distribution" id="distribution">
         <h3>Select Distribution</h3>
-        <div class="large-3 medium-3 small-3 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="Ubuntu" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-4 small-6 columns">
+          <ul class="pricing-table active" data-name="Ubuntu" data-type="distribution" data-id="0">
+            <li class="price"><img class="Ubuntu small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">Ubuntu</li>
+            <li class="description">
+              Version
+                <select>
+                  <option value="15.04 x64" selected="selected">15.04 x64</option>
+                  <option value="15.04 x32">15.04 x32</option>
+                  <option value="14.04 x64">14.04 x64</option>
+                  <option value="14.04 x32">14.04 x32</option>
+                  <option value="12.04 x64">12.04 x64</option>
+                  <option value="12.04 x32">12.04 x32</option>
+                </select>
+            </li>
           </ul>
         </div>
-        <div class="large-3 medium-3 small-3 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="FreeBSD" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-4 small-6 columns">
+          <ul class="pricing-table" data-name="FreeBSD" data-type="distribution" data-id="1">
+            <li class="price"><img class="FreeBSD small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">FreeBSD</li>
+            <li class="description">
+              Version
+                <select>
+                  <option value="10.01">10.01</option>
+                </select>
+            </li>
           </ul>
         </div>
-        <div class="large-3 medium-3 small-3 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="Fedora" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-4 small-6 columns">
+          <ul class="pricing-table" data-name="Fedora" data-type="distribution" data-id="2">
+            <li class="price"><img class="Fedora small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">Fedora</li>
+            <li class="description">
+              Version
+                <select>
+                  <option value="22 x64">22 x64</option>
+                  <option value="21 x64">21 x64</option>
+                </select>
+            </li>
           </ul>
         </div>
-        <div class="large-3 medium-3 small-3 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="Debian" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+        <div class="large-3 medium-4 small-6 columns">
+          <ul class="pricing-table" data-name="Debian" data-type="distribution" data-id="3">
+            <li class="price"><img class="Debian small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
             <li class="bullet-item">Debian</li>
+            <li class="description">
+              Version
+                <select>
+                  <option value="8.1 x64">8.1 x64</option>
+                  <option value="8.1 x32">8.1 x32</option>
+                  <option value="7.0 x64">7.0 x64</option>
+                  <option value="7.0 x32">7.0 x32</option>
+                  <option value="6.0 x64">6.0 x64</option>
+                  <option value="6.0 x32">6.0 x32</option>
+                </select>
+            </li>
           </ul>
         </div>
+      <div class="large-3 medium-4 small-6 columns">
+        <ul class="pricing-table" data-name="CoreOS" data-type="distribution" data-id="4">
+          <li class="price"><img class="CoreOS small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+          <li class="bullet-item">CoreOS</li>
+          <li class="description">
+            Version
+              <select>
+                <option value="758.1.0 (alpha)">758.1.0 (alpha)</option>
+                <option value="723.3.0 (stable)">723.3.0 (stable)</option>
+                <option value="723.3.0 (beta)">723.3.0 (beta)</option>
+              </select>
+          </li>
+        </ul>
       </div>
-      <div class="row">
-        <div class="large-3 medium-3 small-3 columns">
-          <ul class="pricing-table">
-            <li class="price"><img class="CoreOS" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">CoreOS</li>
-          </ul>
-        </div>
-        <div class="large-3 medium-3 small-3 columns end">
-          <ul class="pricing-table">
-            <li class="price"><img class="CentOS" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">CentOS</li>
-          </ul>
-        </div>
+      <div class="large-3 medium-4 small-6 columns end">
+        <ul class="pricing-table" data-name="CentOS" data-type="distribution" data-id="5">
+          <li class="price"><img class="CentOS small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
+          <li class="bullet-item">CentOS</li>
+          <li class="description">
+            Version
+              <select>
+                <option value="7 x64">7 x64</option>
+                <option value="6.7 x64">6.7 x64</option>
+                <option value="6.7 x32">6.7 x32</option>
+                <option value="5.10 x64">5.10 x64</option>
+                <option value="5.10 x32">5.10 x32</option>
+              </select>
+          </li>
+        </ul>
+      </div>
       </div>
 
-      <div class="row" data-magellan-destination="aplications" id="aplications">
+      <div class="row" data-magellan-destination="aplications" id="aplications" data-equalizer>
         <h3>Select Aplication</h3>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="freeBSDAMP" data-type="aplications" data-id="0">
             <li class="bullet-item"><img class="freeBSDAMP" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>FreeBSD AMP</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="LAMP" data-type="aplications" data-id="1">
             <li class="bullet-item"><img class="LAMP" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>LAMP</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="LEMP" data-type="aplications" data-id="2">
             <li class="bullet-item"><img class="LEMP" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>LEMP</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="MEAN" data-type="aplications" data-id="3">
             <li class="bullet-item"><img class="MEAN" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>MEAN</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns end">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns end" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Joomla" data-type="aplications" data-id="4">
             <li class="bullet-item"><img class="Joomla" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Joomla</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Drone" data-type="aplications" data-id="5">
             <li class="bullet-item"><img class="Drone" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Drone</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Ghost" data-type="aplications" data-id="6">
             <li class="bullet-item"><img class="Ghost" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Ghost</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table active" data-name="Rails" data-type="aplications" data-id="7">
             <li class="bullet-item"><img class="Rails" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Rails</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Drupal" data-type="aplications" data-id="8">
             <li class="bullet-item"><img class="Drupal" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Drupal</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="MongoDB" data-type="aplications" data-id="9">
             <li class="bullet-item"><img class="MongoDB" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>MongoDB</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Node" data-type="aplications" data-id="10">
             <li class="bullet-item"><img class="Node" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Node</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Cassandra" data-type="aplications" data-id="11">
             <li class="bullet-item"><img class="Cassandra" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Cassandra</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Stack" data-type="aplications" data-id="12">
             <li class="bullet-item"><img class="Stack" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Stack</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Django" data-type="aplications" data-id="13">
             <li class="bullet-item"><img class="Django" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Django</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Docker" data-type="aplications" data-id="14">
             <li class="bullet-item"><img class="Docker" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Docker</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Magento" data-type="aplications" data-id="15">
             <li class="bullet-item"><img class="Magento" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Magento</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="GitLab" data-type="aplications" data-id="16">
             <li class="bullet-item"><img class="GitLab" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>GitLab</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="MumbleServer" data-type="aplications" data-id="17">
             <li class="bullet-item"><img class="MumbleServer" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Mumble Server</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="MediaWiki" data-type="aplications" data-id="18">
             <li class="bullet-item"><img class="MediaWiki" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>MediaWiki</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="WordPress" data-type="aplications" data-id="19">
             <li class="bullet-item"><img class="WordPress" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>WordPress</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="OwnCloud" data-type="aplications" data-id="20">
             <li class="bullet-item"><img class="OwnCloud" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>OwnCloud</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Dokku" data-type="aplications" data-id="21">
             <li class="bullet-item"><img class="Dokku" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Dokku</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
+          <ul class="pricing-table" data-name="PHPMyAdmin" data-type="aplications" data-id="22">
             <li class="bullet-item"><img class="PHPMyAdmin" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>PHPMyAdmin</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns end">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns end" data-equalizer-watch>
+          <ul class="pricing-table" data-name="Redmine" data-type="aplications" data-id="23">
             <li class="bullet-item"><img class="Redmine" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Redmine</li>
           </ul>
         </div>
@@ -231,91 +308,121 @@
 
       <div class="row" data-magellan-destination="services" id="services">
         <h3>Select Service</h3>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Apache" data-type="services" data-id="0">
             <li class="bullet-item"><img class="Apache" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Apache</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table active" data-name="Nginx" data-type="services" data-id="1">
             <li class="bullet-item"><img class="Nginx" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Nginx</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Unicorn" data-type="services" data-id="2">
             <li class="bullet-item"><img class="Unicorn" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Unicorn</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Sinatra" data-type="services" data-id="3">
             <li class="bullet-item"><img class="Sinatra" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Sinatra</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table active" data-name="GitHub" data-type="services" data-id="4">
             <li class="bullet-item"><img class="GitHub" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>GitHub</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Bitbucket" data-type="services" data-id="5">
             <li class="bullet-item"><img class="Bitbucket" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Bitbucket</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Jenkins" data-type="services" data-id="6">
             <li class="bullet-item"><img class="Jenkins" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Jenkins</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Travis" data-type="services" data-id="7">
             <li class="bullet-item"><img class="Travis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Travis</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Wercker" data-type="services" data-id="8">
             <li class="bullet-item"><img class="Wercker" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Wercker</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Heroku" data-type="services" data-id="9">
             <li class="bullet-item"><img class="Heroku" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Heroku</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Ruby" data-type="services" data-id="10">
             <li class="bullet-item"><img class="Ruby" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Ruby</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Haskell" data-type="services" data-id="11">
             <li class="bullet-item"><img class="Haskell" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Haskell</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="Emacs" data-type="services" data-id="12">
             <li class="bullet-item"><img class="Emacs" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Emacs</li>
           </ul>
         </div>
-        <div class="large-4 medium-4 small-4 columns end">
-          <ul class="pricing-table">
+        <div class="large-4 medium-6 small-12 columns end">
+          <ul class="pricing-table" data-name="VIM" data-type="services" data-id="13">
             <li class="bullet-item"><img class="VIM" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>VIM</li>
           </ul>
         </div>
       </div>
+
+      <div class="row" data-magellan-destination="ssh-keys" id="ssh-keys">
+        <h3>Add SSH Keys</h3>
+        <div class="large-3 medium-6 small-12 columns">
+          <ul class="pricing-table">
+            <li class="bullet-item">Leonel</li>
+          </ul>
+        </div>
+        <div class="large-3 medium-6 small-12 columns">
+          <ul class="pricing-table">
+            <li class="bullet-item">Paco</li>
+          </ul>
+        </div>
+        <div class="large-3 medium-6 small-12 columns">
+          <ul class="pricing-table">
+            <li class="bullet-item">Alfonso</li>
+          </ul>
+        </div>
+        <div class="large-3 medium-6 small-12 columns end">
+          <ul class="pricing-table">
+            <a href="#" id="btn-create_service" class="button radius expand no-margin">+ Add SSH Key</a>
+          </ul>
+        </div>
+      </div>
+      <div class="medium-12 medium-centered columns hide-for-large-up">
+          <a href="#" id="btn-create_service-mini" class="button radius expand disabled">Create Service</a>
+      </div>
     </div>
-    <div class="large-2 columns">
+    <div class="large-2 columns hide-for-small-only hide-for-medium-only">
       <div class="row sidebar">
         <h3>Your Service</h3>
-        <h4>Project Name</h4>
-        <p>Project Name..</p>
-        <h4>Server Provider</h4>
-        <p>Server Provider..</p>
-        <h4>Distribution</h4>
-        <p>Distribution..</p>
-        <h4>Aplication</h4>
-        <p>Aplication..</p>
-        <h4>Services</h4>
-        <p>Services..</p>
+        <h4 class="color-green">Project Name</h4>
+        <p id="label-project-name">none</p>
+        <h4 class="color-green">Automation Software</h4>
+        <p id="label-automation-software">automation software..</p>
+        <h4 class="color-green">Server Provider</h4>
+        <p id="label-server-provider">Server Provider..</p>
+        <h4 class="color-green">Distribution</h4>
+        <p id="label-distribution">Distribution..</p>
+        <h4 class="color-green">Aplication</h4>
+        <p id="label-aplications">Aplications..</p>
+        <h4 class="color-green">Services</h4>
+        <p id="label-services">none</p>
+        <a href="#" id="btn-create_service" class="button radius expand disabled">Create Service</a>
       </div>
     </div>
   </div>
