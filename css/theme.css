@@ -1,4 +1,39 @@
+select{
+    margin: 0;
+    border-color: transparent;
+    width: 90%;
+}
+
 .active li img{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
+.puppet{
+    background: url(../img/automation_icons.png) -300px 0;
+}
+
+.ansible{
+    background: url(../img/automation_icons.png) -0px 0;
+}
+
+.chef{
+    background: url(../img/automation_icons.png) -150px 0;
+}
+
+.puppet, .ansible, .chef{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 150px;
+    height: 150px;
+    border: 0;
+}
+
+.pricing-table:hover .price .puppet, .pricing-table:hover .price .ansible, .pricing-table:hover .price .chef{
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -161,23 +196,26 @@
     background: url(../img/serverprovider_icons.png) 0 0;
 }
 .digital_ocean{
-    background: url(../img/serverprovider_icons.png) -150px 0;
+    background: url(../img/serverprovider_icons.png) -220px 0;
 }
 .google_cloud{
-    background: url(../img/serverprovider_icons.png) -300px 0;
+    background: url(../img/serverprovider_icons.png) -110px 0;
+}
+.none{
+    background: url(../img/serverprovider_icons.png) -330px 0;
 }
 
-.amazon_web_services, .digital_ocean, .google_cloud{
+.amazon_web_services, .digital_ocean, .google_cloud, .none{
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
     -ms-filter: blur(1px) grayscale(90%);
-    width: 150px;
-    height: 150px;
+    width: 110px;
+    height: 110px;
     border: 0;
 }
 
-.pricing-table:hover .price .amazon_web_services, .pricing-table:hover .price .digital_ocean, .pricing-table:hover .price .google_cloud{
+.pricing-table:hover .price .amazon_web_services, .pricing-table:hover .price .digital_ocean, .pricing-table:hover .price .google_cloud, .pricing-table:hover .price .none{
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -227,4 +265,40 @@
 .sidebar{
     position: fixed;
     top: 50px;
+}
+
+.pricing-table[class~="active"]{
+    border: solid 1px #009688;
+}
+
+.color-green{
+    color: #009688;
+}
+
+ul{
+    padding: 0;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="color"]:focus, textarea:focus{
+        border-color: #009688;
+}
+
+.no-margin{
+    margin: 0;
+}
+
+.pricing-table {
+    margin-bottom: 0;
+}
+
+.pricing-table .bullet-item{
+    padding: 0.9375rem 0;
+}
+
+@media only screen and (max-width: 40.063em) {
+    .small-image{
+        zoom:0.25;
+        -moz-transform:scale(0.25);
+        -moz-transform-origin: 0 0;
+    }
 }
