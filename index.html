@@ -399,7 +399,7 @@
         </div>
         <div class="large-3 medium-6 small-12 columns end">
           <ul class="pricing-table">
-            <a href="#" id="btn-create_service" class="button radius expand no-margin">+ Add SSH Key</a>
+            <a href="#" id="btn-add_ssh_key" class="button radius expand no-margin">+ Add SSH Key</a>
           </ul>
         </div>
       </div>
@@ -426,6 +426,41 @@
       </div>
     </div>
   </div>
+
+  <ol class="joyride-list" data-joyride>
+    <li data-id="project-configuration" data-button="Next" data-options="tip_location:top;tip_animation:fade;prev_button: false">
+      <h4>Step #1</h4>
+      <p>Set the project name.</p>
+    </li>
+    <li data-id="automation-software" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Step #2</h4>
+      <p>Specify the tool designed to manage the configuration.</p>
+    </li>
+    <li data-id="server-provider" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Step #3</h4>
+      <p>Determine the cloud computing platform.</p>
+    </li>
+    <li data-id="distribution" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Step #4</h4>
+      <p>Establish the operating system and version.</p>
+    </li>
+    <li data-id="aplications" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Step #5</h4>
+      <p>Choose an preinstaled aplication.</p>
+    </li>
+    <li data-id="services" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Step #6</h4>
+      <p>Pick one or more services to provision.</p>
+    </li>
+    <li data-id="ssh-keys" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade;">
+      <h4>Step #7</h4>
+      <p>Upload public keys to access your services.</p>
+    </li>
+    <li data-id="btn-create_service" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade; next_button: false">
+      <h4>Done</h4>
+      <p>Provide your service now!</p>
+    </li>
+  </ol>
 
   <script src="js/vendor/jquery.js"></script>
   <script src="js/foundation.min.js"></script>

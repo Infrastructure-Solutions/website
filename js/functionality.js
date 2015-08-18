@@ -1,4 +1,11 @@
-$(document).foundation();
+$(document).foundation({
+   joyride: {
+      cookieMonster: true,
+      cookieName: 'JoyRide',
+      cookieDomain: false,
+      cookie_expires: 5
+   }
+ }).foundation('joyride', 'start');
 
 function Server_provider(id, name, image) {
     this.init();
@@ -67,7 +74,7 @@ Foundation.utils.S(document).ready(function(){
       ' ]' +
     '}';
 
-  var $list_automation_software = ["Pupper","Ansible","Chef"];
+  var $list_automation_software = ["Puppet","Ansible","Chef"];
   var $list_server_provider = ["Amazon Web Services","Digital Ocean","Google Cloud","None"];
   var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
   var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine"];
