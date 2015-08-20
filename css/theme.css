@@ -4,6 +4,13 @@ select{
     width: 90%;
 }
 
+h4{
+    margin: .5em 0;
+}
+p{
+    margin: .5em 0;
+}
+
 .active li img{
     -webkit-filter: none;
     -moz-filter: none;
@@ -267,8 +274,12 @@ select{
     top: 50px;
 }
 
+.pricing-table{
+    border: solid 2px #DDDDDD;
+}
+
 .pricing-table[class~="active"]{
-    border: solid 1px #009688;
+    border: solid 2px #009688;
 }
 
 .color-green{
@@ -280,7 +291,7 @@ ul{
 }
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="week"]:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="time"]:focus, input[type="url"]:focus, input[type="color"]:focus, textarea:focus{
-        border-color: #009688;
+    border-color: #009688;
 }
 
 .no-margin{
