@@ -139,12 +139,9 @@ Foundation.utils.S(document).ready(function(){
       //create new oAuth popup window and monitor it
       Foundation.utils.S.oauthpopup({
           path: '/github/login',
-          callback: function(callback)
+          callback: function(data)
           {
-            $.get('/github/user_info', function(data){
-              Foundation.utils.S('#user_info').html(JSON.stringify(data));
-            });
-              console.log(callback);
+              console.log(data.document.body);
               //do callback stuff
           }
       });
