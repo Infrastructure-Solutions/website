@@ -78,25 +78,25 @@ Foundation.utils.S(document).ready(function(){
   var $list_server_provider = ["Amazon Web Services","Digital Ocean","Google Cloud","None"];
   var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
   var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine"];
-  var $list_services = ["Apache",   "Nginx",  "Unicorn",   "Sinatra",   "GitHub", "Bitbucket",   "Jenkins",   "Travis",   "Wercker",   "Heroku",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
+  var $list_packages = ["Apache",   "Nginx",  "Unicorn",   "Sinatra",   "GitHub", "Bitbucket",   "Jenkins",   "Travis",   "Wercker",   "Heroku",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
 
   var $project_name = "";
   var $active_automation_software = 0;
   var $active_server_provider = 0;
   var $active_distribution = 0;
   var $active_aplication = 7;
-  var $active_services = [1, 4];
+  var $active_packages = [1, 4];
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
   Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]);
   Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
-  Foundation.utils.S("#label-services").text("");
-  $active_services.forEach(function(id){
-      Foundation.utils.S("#label-services").append($list_services[id]+"</br>");
+  Foundation.utils.S("#label-packages").text("");
+  $active_packages.forEach(function(id){
+      Foundation.utils.S("#label-packages").append($list_packages[id]+"</br>");
   });
-  if($active_services.length==0)
-    Foundation.utils.S("#label-services").append("none");
+  if($active_packages.length==0)
+    Foundation.utils.S("#label-packages").append("none");
 
   Foundation.utils.S(document.body).on('click', '.pricing-table', function(){
     selectActive(Foundation.utils.S(this));
@@ -135,7 +135,7 @@ Foundation.utils.S(document).ready(function(){
         $active_aplication = value.data('id');
       }
       Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
-    }else if( value.data('type') == "services" ){
+    }else if( value.data('type') == "package" ){
       //create new oAuth popup window and monitor it
       Foundation.utils.S.oauthGH({
           path: '/github/login',
@@ -145,17 +145,17 @@ Foundation.utils.S(document).ready(function(){
           }
       });
       changeActive(value);
-      if( $active_services.indexOf(value.data('id')) != -1 ){
-        $active_services.splice($active_services.indexOf(value.data('id')),1);
+      if( $active_packages.indexOf(value.data('id')) != -1 ){
+        $active_packages.splice($active_packages.indexOf(value.data('id')),1);
       }else{
-        $active_services.push(value.data('id'));
+        $active_packages.push(value.data('id'));
       }
-      Foundation.utils.S("#label-services").text("");
-      $active_services.forEach(function(id){
-          Foundation.utils.S("#label-services").append($list_services[id]+"</br>");
+      Foundation.utils.S("#label-packages").text("");
+      $active_packages.forEach(function(id){
+          Foundation.utils.S("#label-packages").append($list_packages[id]+"</br>");
       });
-      if($active_services.length==0)
-        Foundation.utils.S("#label-services").append("none");
+      if($active_packages.length==0)
+        Foundation.utils.S("#label-packages").append("none");
     }
     validateService();
   }
@@ -168,7 +168,7 @@ Foundation.utils.S(document).ready(function(){
   }
 
   var validateService = function(){
-    if( $active_services.length > 0 && $project_name != "" ){
+    if( $active_packages.length > 0 && $project_name != "" ){
       Foundation.utils.S("#btn-create_service").removeClass("disabled");
       Foundation.utils.S("#btn-create_service-mini").removeClass("disabled");
     }else{
