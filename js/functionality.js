@@ -78,14 +78,14 @@ Foundation.utils.S(document).ready(function(){
   var $list_server_provider = ["Amazon Web Services","Digital Ocean","Google Cloud","None"];
   var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
   var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine"];
-  var $list_packages = ["Sinatra",   "GitHub", "Bitbucket",   "Jenkins",   "Travis",   "Wercker",   "Heroku",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
+  var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
 
   var $project_name = "";
   var $active_automation_software = 0;
   var $active_server_provider = 0;
   var $active_distribution = 0;
   var $active_aplication = 7;
-  var $active_packages = [1, 4];
+  var $active_packages = [0, 3];
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
@@ -144,7 +144,6 @@ Foundation.utils.S(document).ready(function(){
               document.cookie= "userData="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
           }
       });
-      changeActive(value);
       if( $active_packages.indexOf(value.data('id')) != -1 ){
         $active_packages.splice($active_packages.indexOf(value.data('id')),1);
       }else{
