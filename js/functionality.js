@@ -137,15 +137,11 @@ Foundation.utils.S(document).ready(function(){
       Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
     }else if( value.data('type') == "services" ){
       //create new oAuth popup window and monitor it
-      Foundation.utils.S.oauthpopup({
-          path: 'http://localhost:7000/login',
-          callback: function(callback)
+      Foundation.utils.S.oauthGH({
+          path: '/github/login',
+          callback: function(data)
           {
-            $.get('http://localhost:7000/user_info', function(data){
-              Foundation.utils.S('#user_info').html(JSON.stringify(data));
-            });
-              console.log(callback);
-              //do callback stuff
+              document.cookie= "userData="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
           }
       });
       changeActive(value);
@@ -188,20 +184,5 @@ Foundation.utils.S(document).ready(function(){
       Foundation.utils.S("#label-project-name").text("none");
     validateService();
   });
-
-
-
-  //Authorization popup window code
-  Foundation.utils.S.oauthpopup = function(options)
-  {
-    options.windowName = options.windowName ||  'ConnectWithOAuth'; // should not include space for IE
-    options.windowOptions = options.windowOptions || 'location=0,status=0,width=800,height=400';
-    options.callback = options.callback || function(){ window.location.reload(); };
-    var that = this;
-    that._oauthWindow = window.open(options.path, options.windowName, options.windowOptions);
-    that._oauthInterval = window.setInterval(function(){
-      console.log(that._oauthWindow.location.href);
-    }, 1000);
-  };
 
 });
