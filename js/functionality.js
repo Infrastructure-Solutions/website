@@ -141,7 +141,7 @@ Foundation.utils.S(document).ready(function(){
           path: '/github/login',
           callback: function(data)
           {
-              console.log(data.Foundation.utils.S("pre").val());
+              console.log(data.document.body.innerHTML.getElementsByTagName("pre"));
               //do callback stuff
           }
       });
