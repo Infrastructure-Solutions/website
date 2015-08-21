@@ -199,6 +199,7 @@ Foundation.utils.S(document).ready(function(){
     that._oauthInterval = window.setInterval(function(){
       if(that._oauthWindow.location.href.includes("github/github_oauth_cb"))
          options.callback(that._oauthWindow);
+         that._oauthWindow.close();
     }, 1000);
   };
 
