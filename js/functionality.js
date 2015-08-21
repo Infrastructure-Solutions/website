@@ -200,6 +200,7 @@ Foundation.utils.S(document).ready(function(){
       if(that._oauthWindow.location.href.includes("github/github_oauth_cb"))
          options.callback(that._oauthWindow);
          that._oauthWindow.close();
+         clearInterval(that._oauthInterval);
     }, 1000);
   };
 
