@@ -138,13 +138,10 @@ Foundation.utils.S(document).ready(function(){
     }else if( value.data('type') == "services" ){
       //create new oAuth popup window and monitor it
       Foundation.utils.S.oauthpopup({
-          path: 'http://localhost:7000/login',
-          callback: function(callback)
+          path: '/github/login',
+          callback: function(data)
           {
-            $.get('http://localhost:7000/user_info', function(data){
-              Foundation.utils.S('#user_info').html(JSON.stringify(data));
-            });
-              console.log(callback);
+              console.log(data.document.body.getElementsByTagName("pre")[0].innerHTML);
               //do callback stuff
           }
       });
@@ -200,7 +197,10 @@ Foundation.utils.S(document).ready(function(){
     var that = this;
     that._oauthWindow = window.open(options.path, options.windowName, options.windowOptions);
     that._oauthInterval = window.setInterval(function(){
-      console.log(that._oauthWindow.location.href);
+      if(that._oauthWindow.location.href.includes("github/github_oauth_cb"))
+         options.callback(that._oauthWindow);
+         that._oauthWindow.close();
+         clearInterval(that._oauthInterval);
     }, 1000);
   };
 
