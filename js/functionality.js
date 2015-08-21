@@ -78,7 +78,7 @@ Foundation.utils.S(document).ready(function(){
   var $list_server_provider = ["Amazon Web Services","Digital Ocean","Google Cloud","None"];
   var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
   var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine"];
-  var $list_packages = ["Apache",   "Nginx",  "Unicorn",   "Sinatra",   "GitHub", "Bitbucket",   "Jenkins",   "Travis",   "Wercker",   "Heroku",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
+  var $list_packages = ["Sinatra",   "GitHub", "Bitbucket",   "Jenkins",   "Travis",   "Wercker",   "Heroku",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
 
   var $project_name = "";
   var $active_automation_software = 0;
