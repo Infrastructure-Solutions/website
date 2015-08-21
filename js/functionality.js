@@ -138,10 +138,10 @@ Foundation.utils.S(document).ready(function(){
     }else if( value.data('type') == "services" ){
       //create new oAuth popup window and monitor it
       Foundation.utils.S.oauthpopup({
-          path: 'http://localhost:7000/login',
+          path: '/github/login',
           callback: function(callback)
           {
-            $.get('http://localhost:7000/user_info', function(data){
+            $.get('/github/user_info', function(data){
               Foundation.utils.S('#user_info').html(JSON.stringify(data));
             });
               console.log(callback);
