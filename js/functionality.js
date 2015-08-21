@@ -137,11 +137,11 @@ Foundation.utils.S(document).ready(function(){
       Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
     }else if( value.data('type') == "services" ){
       //create new oAuth popup window and monitor it
-      Foundation.utils.S.oauthpopup({
+      Foundation.utils.S.oauthGH({
           path: '/github/login',
           callback: function(data)
           {
-              console.log(data.document.body.getElementsByTagName("pre")[0].innerHTML);
+              data.document.body.getElementsByTagName("pre")[0].innerHTML;
               //do callback stuff
           }
       });
@@ -185,23 +185,5 @@ Foundation.utils.S(document).ready(function(){
       Foundation.utils.S("#label-project-name").text("none");
     validateService();
   });
-
-
-
-  //Authorization popup window code
-  Foundation.utils.S.oauthpopup = function(options)
-  {
-    options.windowName = options.windowName ||  'ConnectWithOAuth'; // should not include space for IE
-    options.windowOptions = options.windowOptions || 'location=0,status=0,width=800,height=400';
-    options.callback = options.callback || function(){ window.location.reload(); };
-    var that = this;
-    that._oauthWindow = window.open(options.path, options.windowName, options.windowOptions);
-    that._oauthInterval = window.setInterval(function(){
-      if(that._oauthWindow.location.href.includes("github/github_oauth_cb"))
-         options.callback(that._oauthWindow);
-         that._oauthWindow.close();
-         clearInterval(that._oauthInterval);
-    }, 1000);
-  };
 
 });
