@@ -141,8 +141,7 @@ Foundation.utils.S(document).ready(function(){
           path: '/github/login',
           callback: function(data)
           {
-              data.document.body.getElementsByTagName("pre")[0].innerHTML;
-              //do callback stuff
+              document.cookie= "userData="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
           }
       });
       changeActive(value);
