@@ -138,6 +138,40 @@ p{
     -ms-filter: none;
 }
 
+.Sinatra{
+    background: url(../img/package_icons.png) -344px -2px;
+}
+.Ruby{
+    background: url(../img/package_icons.png) -306px -2px;
+}
+.Haskell{
+    background: url(../img/package_icons.png) -192px -2px;
+}
+.Emacs{
+    background: url(../img/package_icons.png) -116px -2px;
+}
+.VIM{
+    background: url(../img/package_icons.png) -458px -2px;
+}
+
+.Sinatra, .Ruby, .Haskell, .Emacs, .VIM{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 34px;
+    height: 34px;
+    border: 0;
+    margin-right: 10px;
+}
+
+.pricing-table:hover .bullet-item .Sinatra, .pricing-table:hover .bullet-item .Ruby, .pricing-table:hover .bullet-item .Haskell, .pricing-table:hover .bullet-item .Emacs, .pricing-table:hover .bullet-item .VIM{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
 .GitHub{
     background: url(../img/services_icons.png) -34px 0px;
 }
