@@ -101,11 +101,31 @@ Foundation.utils.S(document).ready(function(){
   Foundation.utils.S(document.body).on('click', '.pricing-table', function(){
     selectActive(Foundation.utils.S(this));
   });
+  
+  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){
+    connectService(Foundation.utils.S(this));
+  });
 
   Foundation.utils.S(document.body).on('change', '.pricing-table[data-type="distribution"] li select', function(){
     Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
   });
 
+  var connectService = function(value){
+    if( value.data('type') == "github" ){
+      Foundation.utils.S.oauthGH({
+          path: '/github/login',
+          callback: function(data)
+          {
+              document.cookie= "userData="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
+          }
+      });
+    }else if( value.data('type') == "digital-ocean" ){
+      
+    }else if( value.data('type') == "travis" ){
+      
+    }
+  }
+  
   var selectActive = function(value){
     if( value.data('type') == "automation-software" ){
       if( value.data('id') != $active_automation_software ){
@@ -136,14 +156,6 @@ Foundation.utils.S(document).ready(function(){
       }
       Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
     }else if( value.data('type') == "package" ){
-      //create new oAuth popup window and monitor it
-      Foundation.utils.S.oauthGH({
-          path: '/github/login',
-          callback: function(data)
-          {
-              document.cookie= "userData="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
-          }
-      });
       if( $active_packages.indexOf(value.data('id')) != -1 ){
         $active_packages.splice($active_packages.indexOf(value.data('id')),1);
       }else{
@@ -155,6 +167,7 @@ Foundation.utils.S(document).ready(function(){
       });
       if($active_packages.length==0)
         Foundation.utils.S("#label-packages").append("none");
+      changeActive(value);
     }
     validateService();
   }
