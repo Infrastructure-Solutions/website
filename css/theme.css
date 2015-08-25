@@ -138,50 +138,23 @@ p{
     -ms-filter: none;
 }
 
-.Apache{
-    background: url(../img/services_icons.png) -40px -2px;
-}
-.Nginx{
-    background: url(../img/services_icons.png) -2px -2px;
-}
-.Unicorn{
-    background: url(../img/services_icons.png) -420px -2px;
-}
 .Sinatra{
-    background: url(../img/services_icons.png) -344px -2px;
-}
-.GitHub{
-    background: url(../img/services_icons.png) -154px -2px;
-}
-.Bitbucket{
-    background: url(../img/services_icons.png) -78px -2px;
-}
-.Jenkins{
-    background: url(../img/services_icons.png) -268px -2px;
-}
-.Travis{
-    background: url(../img/services_icons.png) -382px -2px;
-}
-.Wercker{
-    background: url(../img/services_icons.png) -496px -2px;
-}
-.Heroku{
-    background: url(../img/services_icons.png) -230px -2px;
+    background: url(../img/package_icons.png) -344px -2px;
 }
 .Ruby{
-    background: url(../img/services_icons.png) -306px -2px;
+    background: url(../img/package_icons.png) -306px -2px;
 }
 .Haskell{
-    background: url(../img/services_icons.png) -192px -2px;
+    background: url(../img/package_icons.png) -192px -2px;
 }
 .Emacs{
-    background: url(../img/services_icons.png) -116px -2px;
+    background: url(../img/package_icons.png) -116px -2px;
 }
 .VIM{
-    background: url(../img/services_icons.png) -458px -2px;
+    background: url(../img/package_icons.png) -458px -2px;
 }
 
-.Apache, .Nginx, .Unicorn, .Sinatra, .GitHub, .Bitbucket, .Jenkins, .Travis, .Wercker, .Heroku, .Ruby, .Haskell, .Emacs, .VIM{
+.Sinatra, .Ruby, .Haskell, .Emacs, .VIM{
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -192,7 +165,35 @@ p{
     margin-right: 10px;
 }
 
-.pricing-table:hover .bullet-item .Apache, .pricing-table:hover .bullet-item .Nginx, .pricing-table:hover .bullet-item .Unicorn, .pricing-table:hover .bullet-item .Sinatra, .pricing-table:hover .bullet-item .GitHub, .pricing-table:hover .bullet-item .Bitbucket, .pricing-table:hover .bullet-item .Jenkins, .pricing-table:hover .bullet-item .Travis, .pricing-table:hover .bullet-item .Wercker, .pricing-table:hover .bullet-item .Heroku, .pricing-table:hover .bullet-item .Ruby, .pricing-table:hover .bullet-item .Haskell, .pricing-table:hover .bullet-item .Emacs, .pricing-table:hover .bullet-item .VIM{
+.pricing-table:hover .bullet-item .Sinatra, .pricing-table:hover .bullet-item .Ruby, .pricing-table:hover .bullet-item .Haskell, .pricing-table:hover .bullet-item .Emacs, .pricing-table:hover .bullet-item .VIM{
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+}
+
+.GitHub{
+    background: url(../img/services_icons.png) -34px 0px;
+}
+.DigitalOcean{
+    background: url(../img/services_icons.png) 0px 0px;
+}
+.Travis{
+    background: url(../img/services_icons.png) -68px 0px;
+}
+
+.GitHub, .DigitalOcean, .Travis{
+    -webkit-filter: blur(1px) grayscale(90%);
+    -moz-filter: blur(1px) grayscale(90%);
+    -o-filter: blur(1px) grayscale(90%);
+    -ms-filter: blur(1px) grayscale(90%);
+    width: 34px;
+    height: 34px;
+    border: 0;
+    margin-right: 10px;
+}
+
+.pricing-table:hover .bullet-item .GitHub, .pricing-table:hover .bullet-item .DigitalOcean, .pricing-table:hover .bullet-item .Travis{
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
