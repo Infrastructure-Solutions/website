@@ -7,10 +7,11 @@ Foundation.utils.S(document).ready(function(){
     var that = this;
     that._oauthWindow = window.open(options.path, options.windowName, options.windowOptions);
     that._oauthInterval = window.setInterval(function(){
-      if(that._oauthWindow.location.href.includes("github/github_oauth_cb"))
+      if(that._oauthWindow.location.href.includes(options.redirectUrl)){
          options.callback(that._oauthWindow);
          that._oauthWindow.close();
          clearInterval(that._oauthInterval);
+        }
     }, 1000);
   };
 

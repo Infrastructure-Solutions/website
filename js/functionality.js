@@ -114,13 +114,21 @@ Foundation.utils.S(document).ready(function(){
     if( value.data('type') == "github" ){
       Foundation.utils.S.oauthGH({
           path: '/github/login',
+          redirectUrl: 'github/github_oauth_cb',
           callback: function(data)
           {
-              document.cookie= "userData="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
+              document.cookie= "userData_github="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
           }
       });
     }else if( value.data('type') == "digital-ocean" ){
-      
+      Foundation.utils.S.oauthGH({
+          path: '/digitalocean/',
+          redirectUrl: 'digitalocean/do_callback',
+          callback: function(data)
+          {
+              document.cookie= "userData_digitalocean="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
+          }
+      });
     }else if( value.data('type') == "travis" ){
       
     }
