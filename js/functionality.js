@@ -86,6 +86,23 @@ Foundation.utils.S(document).ready(function(){
   var $active_distribution = 3;
   var $active_aplication = 7;
   var $active_packages = [0, 3];
+  
+  var changeBtnValue = function(value,text){
+    value.text(text);
+  }
+  
+  var updateServiceConection = function(){
+    if (getCookie("userData_github")!= ""){
+      changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Disconnect");
+    }else{
+      changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Connect");
+    }
+    if (getCookie("userData_digitalocean")!= ""){
+      changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Disconnect");
+    }else{
+      changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Connect");
+    }
+  }
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
@@ -97,13 +114,27 @@ Foundation.utils.S(document).ready(function(){
   });
   if($active_packages.length==0)
     Foundation.utils.S("#label-packages").append("none");
+  updateServiceConection();
 
   Foundation.utils.S(document.body).on('click', '.pricing-table', function(){
     selectActive(Foundation.utils.S(this));
   });
   
-  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){
-    connectService(Foundation.utils.S(this));
+  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){    
+    if( Foundation.utils.S(this).data('type') == "github" ){
+      if (getCookie("userData_github")!= ""){
+        setCookie("userData_github","",5);
+      }else{
+        connectService(Foundation.utils.S(this));
+      }
+    }else if( Foundation.utils.S(this).data('type') == "digital-ocean" ){
+      if (getCookie("userData_digitalocean")!= ""){
+        setCookie("userData_digitalocean","",5);
+      }else{
+        connectService(Foundation.utils.S(this));
+      }
+    }
+    updateServiceConection();
   });
 
   Foundation.utils.S(document.body).on('change', '.pricing-table[data-type="distribution"] li select', function(){
@@ -117,7 +148,8 @@ Foundation.utils.S(document).ready(function(){
           redirectUrl: 'github/github_oauth_cb',
           callback: function(data)
           {
-              document.cookie= "userData_github="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
+              setCookie("userData_github",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
+              updateServiceConection();
           }
       });
     }else if( value.data('type') == "digital-ocean" ){
@@ -126,7 +158,8 @@ Foundation.utils.S(document).ready(function(){
           redirectUrl: 'digitalocean/do_callback',
           callback: function(data)
           {
-              document.cookie= "userData_digitalocean="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
+              setCookie("userData_digitalocean",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
+              updateServiceConection();
           }
       });
     }
@@ -183,6 +216,13 @@ Foundation.utils.S(document).ready(function(){
       value.addClass("active");
     else
       value.removeClass("active");
+  }
+  
+  var isBtnActive = function(value){
+    if( value.hasClass("active") )
+      return true;
+    else
+      return false;
   }
 
   var validateService = function(){
