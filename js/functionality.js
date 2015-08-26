@@ -190,10 +190,8 @@ Foundation.utils.S(document).ready(function(){
   var validateService = function(){
     if( $active_packages.length > 0 && $project_name != "" ){
       Foundation.utils.S("#btn-create_service").removeClass("disabled");
-      Foundation.utils.S("#btn-create_service-mini").removeClass("disabled");
     }else{
       Foundation.utils.S("#btn-create_service").addClass("disabled");
-      Foundation.utils.S("#btn-create_service-mini").addClass("disabled");
     }
   }
 
