@@ -272,7 +272,7 @@ p{
 
 .sidebar{
     position: fixed;
-    top: 50px;
+    top: 6.25rem;
 }
 
 .pricing-table{
@@ -305,6 +305,22 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus
 
 .pricing-table .bullet-item{
     padding: 0.9375rem 0;
+}
+
+.sub-nav dt, .sub-nav dd, .sub-nav li{
+    margin-left: 0;
+}
+
+.sub-nav{
+    padding-top: 1.25rem;
+}
+
+.sub-nav dt.active a, .sub-nav dd.active a, .sub-nav li.active a{
+    padding: 0.5875rem 0.7rem;
+}
+
+[data-magellan-expedition] .sub-nav a, [data-magellan-expedition-clone] .sub-nav a{
+    line-height: 3.2em;
 }
 
 @media only screen and (max-width: 40.063em) {
