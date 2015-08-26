@@ -15,13 +15,12 @@
     <div class="row">
       <dl class="sub-nav">
         <dd data-magellan-arrival="project-configuration" class="active"><a href="#project-configuration"><i class="step fi-wrench"></i> Project Configuration</a></dd>
+        <dd data-magellan-arrival="connect-service"><a href="#connect-service"><i class="step fi-share"></i> Connect Service</a></dd>
         <dd data-magellan-arrival="automation-software"><a href="#automation-software"><i class="step fi-upload-cloud"></i> Automation Software</a></dd>
         <dd data-magellan-arrival="server-provider"><a href="#server-provider"><i class="step fi-cloud"></i> Server Provider</a></dd>
         <dd data-magellan-arrival="distribution"><a href="#distribution"><i class="step fi-annotate"></i> Distribution</a></dd>
         <dd data-magellan-arrival="aplications"><a href="#aplications"><i class="step fi-social-dropbox"></i> Aplications</a></dd>
         <dd data-magellan-arrival="packages"><a href="#packages"><i class="step fi-archive"></i> Packages</a></dd>
-        <dd data-magellan-arrival="connect-service"><a href="#connect-service"><i class="step fi-share"></i> Connect Service</a></dd>
-        <dd data-magellan-arrival="ssh-keys"><a href="#ssh-keys"><i class="step fi-key"></i> Add Keys</a></dd>
       </dl>
     </div>
   </div>
@@ -42,6 +41,25 @@
         </div>
       </div>
 
+      <div class="row" data-magellan-destination="connect-service" id="connect-service">
+        <h2><i class="step fi-share"></i> Connect Service(s)</h2>
+        <div class="large-6 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="GitHub" data-type="connect-service" data-id="0">
+            <li class="bullet-item"><img class="GitHub" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>GitHub <a href="#" data-type="github" class="button radius btn-connect">Connect</a></li>
+          </ul>
+        </div>
+        <div class="large-6 medium-6 small-12 columns">
+          <ul class="pricing-table" data-name="DigitalOcean" data-type="connect-service" data-id="1">
+            <li class="bullet-item"><img class="DigitalOcean" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Digital Ocean <a href="#" data-type="digital-ocean" class="button radius btn-connect">Connect</a></li>
+          </ul>
+        </div>
+        <div class="large-6 medium-6 small-12 columns end">
+          <ul class="pricing-table" data-name="Travis" data-type="connect-service" data-id="2">
+            <li class="bullet-item"><img class="Travis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Travis <a href="#" data-type="travis" class="button radius btn-connect">Connect</a></li>
+          </ul>
+        </div>
+      </div>
+      
       <div class="row" data-magellan-destination="automation-software" id="automation-software" data-equalizer>
         <h2><i class="step fi-upload-cloud"></i> Select Automation Software</h2>
         <div class="large-4 medium-6 small-6 columns" data-equalizer-watch>
@@ -337,25 +355,6 @@
           </ul>
         </div>
       </div>
-      
-      <div class="row" data-magellan-destination="connect-service" id="connect-service">
-        <h2><i class="step fi-share"></i> Connect Service(s)</h2>
-        <div class="large-6 medium-6 small-12 columns">
-          <ul class="pricing-table" data-name="GitHub" data-type="connect-service" data-id="0">
-            <li class="bullet-item"><img class="GitHub" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>GitHub <a href="#" data-type="github" class="button radius btn-connect">Connect</a></li>
-          </ul>
-        </div>
-        <div class="large-6 medium-6 small-12 columns">
-          <ul class="pricing-table" data-name="DigitalOcean" data-type="connect-service" data-id="1">
-            <li class="bullet-item"><img class="DigitalOcean" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Digital Ocean <a href="#" data-type="digital-ocean" class="button radius btn-connect">Connect</a></li>
-          </ul>
-        </div>
-        <div class="large-6 medium-6 small-12 columns end">
-          <ul class="pricing-table" data-name="Travis" data-type="connect-service" data-id="2">
-            <li class="bullet-item"><img class="Travis" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Travis <a href="#" data-type="travis" class="button radius btn-connect">Connect</a></li>
-          </ul>
-        </div>
-      </div>
 
       <div class="row" data-magellan-destination="ssh-keys" id="ssh-keys">
         <h2><i class="step fi-key"></i> Add SSH Keys</h2>
@@ -379,6 +378,7 @@
             <a href="#" id="btn-add_ssh_key" class="button radius expand no-margin">+ Add SSH Key</a>
           </ul>
         </div>
+        <p>Adding an SSH key is a recommended security measure. If you choose not to add one, you will receive a root password via email.</p>
       </div>
       <div class="large-12 large-centered medium-12 medium-centered small-12 small-centered columns">
           <a href="#" id="btn-create_service" class="button radius expand disabled"><i class="step fi-power"></i> Create Service</a>
@@ -419,25 +419,25 @@
       <h4><i class="step fi-info"></i> Step #1</h4>
       <p>Set the project name.</p>
     </li>
-    <li data-id="automation-software" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <li data-id="connect-service" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
       <h4><i class="step fi-info"></i> Step #2</h4>
+      <p>Connect to a services for provision.</p>
+    </li>
+    <li data-id="automation-software" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4><i class="step fi-info"></i> Step #3</h4>
       <p>Specify the tool designed to manage the configuration.</p>
     </li>
     <li data-id="server-provider" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-      <h4><i class="step fi-info"></i> Step #3</h4>
+      <h4><i class="step fi-info"></i> Step #4</h4>
       <p>Determine the cloud computing platform.</p>
     </li>
     <li data-id="distribution" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-      <h4><i class="step fi-info"></i> Step #4</h4>
+      <h4><i class="step fi-info"></i> Step #5</h4>
       <p>Establish the operating system and version.</p>
     </li>
     <li data-id="aplications" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-      <h4><i class="step fi-info"></i> Step #5</h4>
-      <p>Choose an preinstaled aplication.</p>
-    </li>
-    <li data-id="services" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
       <h4><i class="step fi-info"></i> Step #6</h4>
-      <p>Pick one or more services to provision.</p>
+      <p>Choose an preinstaled aplication.</p>
     </li>
     <li data-id="ssh-keys" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade;">
       <h4><i class="step fi-info"></i> Step #7</h4>
