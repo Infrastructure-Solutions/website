@@ -89,7 +89,7 @@ Foundation.utils.S(document).ready(function(){
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
-  Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]);
+  Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
   Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
   Foundation.utils.S("#label-packages").text("");
   $active_packages.forEach(function(id){
