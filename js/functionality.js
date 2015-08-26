@@ -129,8 +129,6 @@ Foundation.utils.S(document).ready(function(){
               document.cookie= "userData_digitalocean="+data.document.body.getElementsByTagName("pre")[0].innerHTML;
           }
       });
-    }else if( value.data('type') == "travis" ){
-      
     }
   }
   
