@@ -91,16 +91,34 @@ Foundation.utils.S(document).ready(function(){
     value.text(text);
   }
   
+  var changeActive = function(value){
+    if( !value.hasClass("active") )
+      value.addClass("active");
+    else
+      value.removeClass("active");
+  }
+  
+  var modifyClassActive = function(value,active){
+    if( active )
+      value.addClass("active");
+    else
+      value.removeClass("active");
+  }
+  
   var updateServiceConection = function(){
     if (getCookie("userData_github")!= ""){
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Disconnect");
+      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),true);
     }else{
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Connect");
+      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),false);
     }
     if (getCookie("userData_digitalocean")!= ""){
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Disconnect");
+      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),true);
     }else{
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Connect");
+      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),false);
     }
   }
 
@@ -209,20 +227,6 @@ Foundation.utils.S(document).ready(function(){
       changeActive(value);
     }
     validateService();
-  }
-
-  var changeActive = function(value){
-    if( !value.hasClass("active") )
-      value.addClass("active");
-    else
-      value.removeClass("active");
-  }
-  
-  var isBtnActive = function(value){
-    if( value.hasClass("active") )
-      return true;
-    else
-      return false;
   }
 
   var validateService = function(){
