@@ -82,8 +82,8 @@ Foundation.utils.S(document).ready(function(){
 
   var $project_name = "";
   var $active_automation_software = 0;
-  var $active_server_provider = 0;
-  var $active_distribution = 0;
+  var $active_server_provider = 1;
+  var $active_distribution = 3;
   var $active_aplication = 7;
   var $active_packages = [0, 3];
 
