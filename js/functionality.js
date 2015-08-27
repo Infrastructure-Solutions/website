@@ -176,7 +176,19 @@ Foundation.utils.S(document).ready(function(){
          type: "GET",
          beforeSend: function(xhr){xhr.setRequestHeader('token', jQuery.parseJSON(getCookie("userData_github")).AccessToken);},
          success: function(data) { 
-           setCookie("userData_github_user_repos",data,5);
+            setCookie("userData_github_user_repos",data,5);
+            var repoList = "";
+            $.each(data, function(key, value){
+                repoList += '<p><input type="radio" name="radio1" value="'+value.name+'" id="'+key+'"><label for="'+value.name+'">'+value.name+'</label></p>';
+            });
+            Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
+                                '<form><div class="large-10 columns end">'+
+                                  '<label>Select the Repository to be provisioned</label>'+
+                                  repoList+
+                                '</div>'+
+                                '<a class="close-reveal-modal" aria-label="Close">&#215;</a></form>');
+            Foundation.utils.S(document).foundation('reflow');
+            $('#modalPopUp').foundation('reveal','open');
          }
       });
       }else{
