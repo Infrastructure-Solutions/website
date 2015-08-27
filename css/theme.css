@@ -364,6 +364,14 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus
     font-size: 9px;
 }
 
+.reveal-modal{
+    z-index: 9998;
+}
+
+.alert-box.success, .alert-box.warning{
+    z-index: 9999;
+}
+
 .hide{
     display: none;
 }

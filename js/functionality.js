@@ -151,7 +151,7 @@ Foundation.utils.S(document).ready(function(){
         setCookie("userData_github_user_repos",data,5);
         var repoList = "";
         $.each(data, function(key, value){
-            repoList += '<div class="switch round large"><input type="radio" name="user-repo" value="'+value.full_name+'" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
+            repoList += '<div class="switch round large"><input type="radio" name="user-repo" value="'+value.full_name+'" id="'+key+'" '+ ($active_user_repo == value.full_name && 'checked="checked"') + '><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
         });
         Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
                             '<form><div class="large-10 columns end">'+
@@ -170,6 +170,7 @@ Foundation.utils.S(document).ready(function(){
   Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
   Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
   Foundation.utils.S("#label-packages").text("");
+  $active_user_repo = getCookie("active_user_repo");
   $active_packages.forEach(function(id){
       Foundation.utils.S("#label-packages").append($list_packages[id]+"</br>");
   });
@@ -185,6 +186,8 @@ Foundation.utils.S(document).ready(function(){
     if( Foundation.utils.S(this).data('type') == "github" ){
       if (getCookie("userData_github")!= ""){
         setCookie("userData_github","",5);
+        setCookie("active_user_repo","",5);
+        $active_user_repo = "";
       }else{
         connectService(Foundation.utils.S(this));
       }
@@ -200,6 +203,8 @@ Foundation.utils.S(document).ready(function(){
   
   Foundation.utils.S(document.body).on('change', 'input[name="user-repo"]', function(){
     $active_user_repo = Foundation.utils.S(this).val();
+    setCookie("active_user_repo",$active_user_repo);
+    createAlertBox($active_user_repo+' User Repo Selected','success');
   });
   
   Foundation.utils.S(document.body).on('click', '.btn-config', function(){    
@@ -211,6 +216,14 @@ Foundation.utils.S(document).ready(function(){
     }else if( Foundation.utils.S(this).data('type') == "digital-ocean" ){
       if (getCookie("userData_digitalocean")!= ""){
       }else{
+      }
+    }
+  });
+  
+  Foundation.utils.S(document.body).on('click', '#btn-create_service', function(){
+    if( $active_packages.length > 0 && $project_name != "" ){
+      if( $active_user_repo == "" ){
+        createAlertBox('Select User Repo','warning');
       }
     }
   });
@@ -300,7 +313,7 @@ Foundation.utils.S(document).ready(function(){
     }
   }
 
-  Foundation.utils.S(document.body).on('keyup', '#input-project_name', function(e){
+  Foundation.utils.S(document.body).on('keyup', '#input-project_name', function(){
     $project_name = Foundation.utils.S(this).val();
     Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
     if(Foundation.utils.S(this).val().toString()=="")
