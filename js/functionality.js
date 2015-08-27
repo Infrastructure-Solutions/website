@@ -167,6 +167,26 @@ Foundation.utils.S(document).ready(function(){
     }
     updateServiceConection();
   });
+  
+  Foundation.utils.S(document.body).on('click', '.btn-config', function(){    
+    if( Foundation.utils.S(this).data('type') == "github" ){
+      if (getCookie("userData_github")!= ""){        
+        jQuery.ajax({
+         url: '/github/user/'+jQuery.parseJSON(getCookie("userData_github")).Username+'/repos',
+         type: "GET",
+         beforeSend: function(xhr){xhr.setRequestHeader('token', jQuery.parseJSON(getCookie("userData_github")).AccessToken);},
+         success: function(data) { 
+           setCookie("userData_github_user_repos",data,5);
+         }
+      });
+      }else{
+      }
+    }else if( Foundation.utils.S(this).data('type') == "digital-ocean" ){
+      if (getCookie("userData_digitalocean")!= ""){
+      }else{
+      }
+    }
+  });
 
   Foundation.utils.S(document.body).on('change', '.pricing-table[data-type="distribution"] li select', function(){
     Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
