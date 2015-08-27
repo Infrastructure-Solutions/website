@@ -81,7 +81,7 @@ Foundation.utils.S(document).ready(function(){
   var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
 
   var $project_name = "";
-  var $active_user_repo = -1;
+  var $active_user_repo = "";
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
@@ -151,7 +151,7 @@ Foundation.utils.S(document).ready(function(){
         setCookie("userData_github_user_repos",data,5);
         var repoList = "";
         $.each(data, function(key, value){
-            repoList += '<div class="switch round large"><input type="radio" name="radio1" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
+            repoList += '<div class="switch round large"><input type="radio" name="user-repo" value="'+value.full_name+'" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
         });
         Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
                             '<form><div class="large-10 columns end">'+
@@ -196,6 +196,10 @@ Foundation.utils.S(document).ready(function(){
       }
     }
     updateServiceConection();
+  });
+  
+  Foundation.utils.S(document.body).on('change', 'input[name="user-repo"]', function(){
+    $active_user_repo = Foundation.utils.S(this).val();
   });
   
   Foundation.utils.S(document.body).on('click', '.btn-config', function(){    
