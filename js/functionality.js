@@ -111,27 +111,33 @@ Foundation.utils.S(document).ready(function(){
       }, 2000);
   }
   
-  var modifyClassActive = function(value,active){
+  var modifyClass = function(value,active,className){
     if( active )
-      value.addClass("active");
+      value.addClass(className);
     else
-      value.removeClass("active");
+      value.removeClass(className);
   }
   
   var updateServiceConection = function(){
     if (getCookie("userData_github")!= ""){
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Disconnect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),true);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),true,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]'),true,"alert");
+      modifyClass(Foundation.utils.S('.btn-config[data-type="github"]'),false,"hide");
     }else{
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Connect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),false);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),false,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]'),false,"alert");
+      modifyClass(Foundation.utils.S('.btn-config[data-type="github"]'),true,"hide");
     }
     if (getCookie("userData_digitalocean")!= ""){
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Disconnect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),true);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),true,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),true,"alert");
     }else{
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Connect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),false);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),false,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),false,"alert");
     }
   }
 
