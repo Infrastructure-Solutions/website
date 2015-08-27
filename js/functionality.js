@@ -81,6 +81,7 @@ Foundation.utils.S(document).ready(function(){
   var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
 
   var $project_name = "";
+  var $active_user_repo = -1;
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
@@ -140,6 +141,29 @@ Foundation.utils.S(document).ready(function(){
       modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),false,"alert");
     }
   }
+  
+  var showUserRepos = function(){
+    jQuery.ajax({
+     url: '/github/user/'+jQuery.parseJSON(getCookie("userData_github")).Username+'/repos',
+     type: "GET",
+     beforeSend: function(xhr){xhr.setRequestHeader('token', jQuery.parseJSON(getCookie("userData_github")).AccessToken);},
+     success: function(data) { 
+        setCookie("userData_github_user_repos",data,5);
+        var repoList = "";
+        $.each(data, function(key, value){
+            repoList += '<div class="switch round large"><input type="radio" name="radio1" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
+        });
+        Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
+                            '<form><div class="large-10 columns end">'+
+                              '<p>Select the Repository to be provisioned</p>'+
+                              repoList+
+                            '</div>'+
+                            '<a class="close-reveal-modal" aria-label="Close">&#215;</a></form>');
+        Foundation.utils.S(document).foundation('switch', 'reflow');
+        $('#modalPopUp').foundation('reveal','open');
+     }
+   });
+  }
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
@@ -157,7 +181,7 @@ Foundation.utils.S(document).ready(function(){
     selectActive(Foundation.utils.S(this));
   });
   
-  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){    
+  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){
     if( Foundation.utils.S(this).data('type') == "github" ){
       if (getCookie("userData_github")!= ""){
         setCookie("userData_github","",5);
@@ -176,27 +200,8 @@ Foundation.utils.S(document).ready(function(){
   
   Foundation.utils.S(document.body).on('click', '.btn-config', function(){    
     if( Foundation.utils.S(this).data('type') == "github" ){
-      if (getCookie("userData_github")!= ""){        
-        jQuery.ajax({
-         url: '/github/user/'+jQuery.parseJSON(getCookie("userData_github")).Username+'/repos',
-         type: "GET",
-         beforeSend: function(xhr){xhr.setRequestHeader('token', jQuery.parseJSON(getCookie("userData_github")).AccessToken);},
-         success: function(data) { 
-            setCookie("userData_github_user_repos",data,5);
-            var repoList = "";
-            $.each(data, function(key, value){
-                repoList += '<div class="switch round large"><input type="radio" name="radio1" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
-            });
-            Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
-                                '<form><div class="large-10 columns end">'+
-                                  '<p>Select the Repository to be provisioned</p>'+
-                                  repoList+
-                                '</div>'+
-                                '<a class="close-reveal-modal" aria-label="Close">&#215;</a></form>');
-            Foundation.utils.S(document).foundation('switch', 'reflow');
-            $('#modalPopUp').foundation('reveal','open');
-         }
-      });
+      if (getCookie("userData_github")!= ""){
+        showUserRepos();
       }else{
       }
     }else if( Foundation.utils.S(this).data('type') == "digital-ocean" ){
@@ -220,6 +225,7 @@ Foundation.utils.S(document).ready(function(){
               setCookie("userData_github",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
               createAlertBox('Success GitHub Logging.','success');
               updateServiceConection();
+              showUserRepos();
           }
       });
     }else if( value.data('type') == "digital-ocean" ){
