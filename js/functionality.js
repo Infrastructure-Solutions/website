@@ -179,15 +179,15 @@ Foundation.utils.S(document).ready(function(){
             setCookie("userData_github_user_repos",data,5);
             var repoList = "";
             $.each(data, function(key, value){
-                repoList += '<p><input type="radio" name="radio1" value="'+value.name+'" id="'+key+'"><label for="'+value.name+'">'+value.name+'</label></p>';
+                repoList += '<div class="switch round large"><input type="radio" name="radio1" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
             });
             Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
                                 '<form><div class="large-10 columns end">'+
-                                  '<label>Select the Repository to be provisioned</label>'+
+                                  '<p>Select the Repository to be provisioned</p>'+
                                   repoList+
                                 '</div>'+
                                 '<a class="close-reveal-modal" aria-label="Close">&#215;</a></form>');
-            Foundation.utils.S(document).foundation('reflow');
+            Foundation.utils.S(document).foundation('switch', 'reflow');
             $('#modalPopUp').foundation('reveal','open');
          }
       });

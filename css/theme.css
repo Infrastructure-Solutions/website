@@ -332,6 +332,38 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus
     line-height: 3.2em;
 }
 
+.switch {
+    margin-bottom: .8em;
+}
+
+.switch-label{
+    position: absolute;
+    left: 24px;
+    top: 8px;
+    color: #4d4d4d;
+    font-weight: bold;
+    font-size: 1em;
+    white-space: nowrap;
+}
+
+.switch-on {
+    position: absolute;
+    left: -64px;
+    top: 13px;
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+}
+
+.switch-off {
+    position: absolute;
+    left: -33px;
+    top: 13px;
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+}
+
 @media only screen and (max-width: 40.063em) {
     .small-image{
         zoom:0.25;
