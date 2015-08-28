@@ -44,12 +44,14 @@ Distribution.prototype.init(os, version){
     this.version = version;
 }
 
-function Applications(name){
-    this.init(name);
+function Applications(name, version, config){
+    this.init(name, version, config);
 }
 
-Applications.prototype.init(name){
+Applications.prototype.init(name, version, config){
     this.name = name;
+    this.version = version;
+    this.config = config;
 }
 
 unction Packages(name, version, config){
@@ -66,10 +68,31 @@ function Server(domain, hostname, provisioner, ditribution_os, distribution_vers
     this.init(domain, hostname, provisioner, ditribution_os, distribution_version, applications_name, packages_name, packages_version, packages_config);
 }
 
-Server.prototype.init = function(domain, hostname, provisioner, ditribution_os, distribution_version, applications, packages_name, packages_version, packages_config) {
+Server.prototype.init = function(domain, hostname, provisioner, ditribution_os, distribution_version) {
     this.domain = domain;
     this.hostname = hostname;
     this.provisioner = provisioner;
     this.distribution = new Distribution(ditribution_os, distribution_version);
-    this.applications = applications;
+    this.applications = [];
+    this.packages = [];
 };
+
+Server.prototype.addApplication = function(name, version, config){
+    this.applications.push(new Application(name, version, config));
+}
+
+Server.prototype.removeAplication = function(aplication){
+    this.packages = $.grep(this.packages, function(elem, index) {
+        return elem !== aplication;
+    });
+}
+
+Server.prototype.addPackage = function(name, version, config){
+    this.packages.push(new Package(name, version, config));
+}
+
+Server.prototype.removePackage = function(application){
+    this.applications = $.grep(this.applications, function(elem, index) {
+        return elem !== application;
+    });
+}
