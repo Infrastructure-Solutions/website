@@ -98,6 +98,19 @@ Foundation.utils.S(document).ready(function(){
       value.removeClass("active");
   }
   
+  var createAlertBox = function(text, type){
+    Foundation.utils.S('.alertBox').html('<div class="large-4 large-offset-8 columns">'+
+                                            '<div data-alert class="alert-box '+ type +' radius">'+
+                                               text +
+                                              '<a href="#" class="close">&times;</a>'+
+                                            '</div>'+
+                                          '</div>');
+    Foundation.utils.S(document).foundation('alert', 'reflow');
+    setTimeout(function () {
+        Foundation.utils.S(".alert-box a.close").trigger("click.fndtn.alert");
+      }, 2000);
+  }
+  
   var modifyClassActive = function(value,active){
     if( active )
       value.addClass("active");
@@ -167,6 +180,7 @@ Foundation.utils.S(document).ready(function(){
           callback: function(data)
           {
               setCookie("userData_github",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
+              createAlertBox('Success GitHub Logging.','success');
               updateServiceConection();
           }
       });
@@ -177,6 +191,7 @@ Foundation.utils.S(document).ready(function(){
           callback: function(data)
           {
               setCookie("userData_digitalocean",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
+              createAlertBox('Success Digital Ocean Logging.','success');
               updateServiceConection();
           }
       });
