@@ -43,6 +43,7 @@ Foundation.utils.S(document).foundation({
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
+  var $active_distribution_version = "";
   var $active_aplication = 7;
   var $active_packages = [0, 3];
   
@@ -128,6 +129,7 @@ Foundation.utils.S(document).foundation({
   Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
   Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
   Foundation.utils.S("#label-packages").text("");
+  $active_distribution_version = Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val();
   $active_user_repo = getCookie("active_user_repo");
   $active_packages.forEach(function(id){
       Foundation.utils.S("#label-packages").append($list_packages[id]+"</br>");
@@ -182,12 +184,20 @@ Foundation.utils.S(document).foundation({
     if( $active_packages.length > 0 && $project_name != "" ){
       if( $active_user_repo == "" ){
         createAlertBox('Select User Repo','warning');
+      }else{
+        $user_object = new User($list_server_provider[$active_server_provider], JSON.parse(getCookie("userData_digitalocean")).info.name, "github.com", JSON.parse(getCookie("userData_github")).Username);
+        $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", null);
+        $.each($active_packages, function(index, value){
+            $server_object.addPackage($list_packages[value], "lastest", null);
+        });
+        $data_object = new Data($user_object, $server_object);
       }
     }
   });
 
   Foundation.utils.S(document.body).on('change', '.pricing-table[data-type="distribution"] li select', function(){
     Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
+    $active_distribution_version = Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val();
   });
 
   var connectService = function(value){
@@ -272,6 +282,14 @@ Foundation.utils.S(document).foundation({
   }
 
   Foundation.utils.S(document.body).on('keyup', '#input-project_name', function(){
+    $project_name = Foundation.utils.S(this).val();
+    Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
+    if(Foundation.utils.S(this).val().toString()=="")
+      Foundation.utils.S("#label-project-name").text("none");
+    validateService();
+  });
+  
+  Foundation.utils.S(document.body).on('focusout', '#input-project_name', function(){
     $project_name = Foundation.utils.S(this).val();
     Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
     if(Foundation.utils.S(this).val().toString()=="")

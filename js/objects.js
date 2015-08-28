@@ -35,8 +35,8 @@ PublicKeys.prototype.removePublicKey = function(publicKey){
     });
 };
 
-function User(provider, vcs, publicKeys) {
-    this.init(provider, vcs, publicKeys);
+function User(provider_name, provider_user_name, vcs_url, vcs_user_name) {
+    this.init(provider_name, provider_user_name, vcs_url, vcs_user_name);
 }
 
 User.prototype.init = function(provider_name, provider_user_name, vcs_url, vcs_user_name) {
@@ -74,35 +74,34 @@ Packages.prototype.init = function(name, version, config){
     this.config = config;
 };
 
-function Server(domain, hostname, provisioner, ditribution_os, distribution_version, applications_name, packages_name, packages_version, packages_config) {
-    this.init(domain, hostname, provisioner, ditribution_os, distribution_version, applications_name, packages_name, packages_version, packages_config);
+function Server(domain, hostname, provisioner, ditribution_os, distribution_version, application_name, application_version, application_config) {
+    this.init(domain, hostname, provisioner, ditribution_os, distribution_version, application_name, application_version, application_config);
 }
 
-Server.prototype.init = function(domain, hostname, provisioner, ditribution_os, distribution_version) {
+Server.prototype.init = function(domain, hostname, provisioner, ditribution_os, distribution_version, application_name, application_version, application_config) {
     this.domain = domain;
     this.hostname = hostname;
     this.provisioner = provisioner;
     this.distribution = new Distribution(ditribution_os, distribution_version);
-    this.applications = [];
+    this.applications = new Applications(application_name, application_version, application_config);
     this.packages = [];
 };
 
-Server.prototype.addApplication = function(name, version, config){
-    this.applications.push(new Application(name, version, config));
-};
-
-Server.prototype.removeAplication = function(aplication){
-    this.packages = $.grep(this.packages, function(elem, index) {
-        return elem !== aplication;
-    });
-};
-
 Server.prototype.addPackage = function(name, version, config){
-    this.packages.push(new Package(name, version, config));
+    this.packages.push(new Packages(name, version, config));
 };
 
-Server.prototype.removePackage = function(application){
-    this.applications = $.grep(this.applications, function(elem, index) {
-        return elem !== application;
+Server.prototype.removePackage = function(package){
+    this.packages = $.grep(this.packages, function(elem, index) {
+        return elem !== package;
     });
+};
+
+function Data(user, server) {
+    this.init(user, server);
+}
+
+Data.prototype.init = function(user, server) {
+    this.user = user;
+    this.server = server;
 };
