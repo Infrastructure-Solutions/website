@@ -81,6 +81,7 @@ Foundation.utils.S(document).ready(function(){
   var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
 
   var $project_name = "";
+  var $active_user_repo = "";
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
@@ -111,28 +112,57 @@ Foundation.utils.S(document).ready(function(){
       }, 2000);
   }
   
-  var modifyClassActive = function(value,active){
+  var modifyClass = function(value,active,className){
     if( active )
-      value.addClass("active");
+      value.addClass(className);
     else
-      value.removeClass("active");
+      value.removeClass(className);
   }
   
   var updateServiceConection = function(){
     if (getCookie("userData_github")!= ""){
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Disconnect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),true);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),true,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]'),true,"alert");
+      modifyClass(Foundation.utils.S('.btn-config[data-type="github"]'),false,"hide");
     }else{
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Connect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),false);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),false,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]'),false,"alert");
+      modifyClass(Foundation.utils.S('.btn-config[data-type="github"]'),true,"hide");
     }
     if (getCookie("userData_digitalocean")!= ""){
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Disconnect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),true);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),true,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),true,"alert");
     }else{
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Connect");
-      modifyClassActive(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),false);
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),false,"active");
+      modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),false,"alert");
     }
+  }
+  
+  var showUserRepos = function(){
+    jQuery.ajax({
+     url: '/github/user/'+jQuery.parseJSON(getCookie("userData_github")).Username+'/repos',
+     type: "GET",
+     beforeSend: function(xhr){xhr.setRequestHeader('token', jQuery.parseJSON(getCookie("userData_github")).AccessToken);},
+     success: function(data) { 
+        setCookie("userData_github_user_repos",data,5);
+        var repoList = "";
+        $.each(data, function(key, value){
+            repoList += '<div class="switch round large"><input type="radio" name="user-repo" value="'+value.full_name+'" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
+        });
+        Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
+                            '<form><div class="large-10 columns end">'+
+                              '<p>Select the Repository to be provisioned</p>'+
+                              repoList+
+                            '</div>'+
+                            '<a class="close-reveal-modal" aria-label="Close">&#215;</a></form>');
+        Foundation.utils.S(document).foundation('switch', 'reflow');
+        $('#modalPopUp').foundation('reveal','open');
+     }
+   });
   }
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
@@ -151,7 +181,7 @@ Foundation.utils.S(document).ready(function(){
     selectActive(Foundation.utils.S(this));
   });
   
-  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){    
+  Foundation.utils.S(document.body).on('click', '.btn-connect', function(){
     if( Foundation.utils.S(this).data('type') == "github" ){
       if (getCookie("userData_github")!= ""){
         setCookie("userData_github","",5);
@@ -166,6 +196,23 @@ Foundation.utils.S(document).ready(function(){
       }
     }
     updateServiceConection();
+  });
+  
+  Foundation.utils.S(document.body).on('change', 'input[name="user-repo"]', function(){
+    $active_user_repo = Foundation.utils.S(this).val();
+  });
+  
+  Foundation.utils.S(document.body).on('click', '.btn-config', function(){    
+    if( Foundation.utils.S(this).data('type') == "github" ){
+      if (getCookie("userData_github")!= ""){
+        showUserRepos();
+      }else{
+      }
+    }else if( Foundation.utils.S(this).data('type') == "digital-ocean" ){
+      if (getCookie("userData_digitalocean")!= ""){
+      }else{
+      }
+    }
   });
 
   Foundation.utils.S(document.body).on('change', '.pricing-table[data-type="distribution"] li select', function(){
@@ -182,6 +229,7 @@ Foundation.utils.S(document).ready(function(){
               setCookie("userData_github",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
               createAlertBox('Success GitHub Logging.','success');
               updateServiceConection();
+              showUserRepos();
           }
       });
     }else if( value.data('type') == "digital-ocean" ){
