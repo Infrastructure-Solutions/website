@@ -1,53 +1,11 @@
-$(document).foundation({
+Foundation.utils.S(document).foundation({
    joyride: {
       cookieMonster: true,
       cookieName: 'JoyRide',
-      cookieDomain: false,
+      cookieDomain: true,
       cookie_expires: 5
    }
- }).foundation('joyride', 'start');
-
-function Server_provider(id, name, image) {
-    this.init();
-}
-
-Server_provider.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-function Distribution(id, name, image) {
-    this.init();
-}
-
-Distribution.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-function Aplication(id, name, image) {
-    this.init();
-}
-
-Aplication.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-function Service(id, name, image) {
-    this.init();
-}
-
-Service.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-Foundation.utils.S(document).ready(function(){
+ }).foundation('joyride', 'start').ready(function(){
 
   var configurationJSON = ''+
     '{ "server_provider" : [' +
@@ -85,6 +43,7 @@ Foundation.utils.S(document).ready(function(){
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
+  var $active_distribution_version = "";
   var $active_aplication = 7;
   var $active_packages = [0, 3];
   
@@ -151,7 +110,7 @@ Foundation.utils.S(document).ready(function(){
         setCookie("userData_github_user_repos",data,5);
         var repoList = "";
         $.each(data, function(key, value){
-            repoList += '<div class="switch round large"><input type="radio" name="user-repo" value="'+value.full_name+'" id="'+key+'"><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
+            repoList += '<div class="switch round large"><input type="radio" name="user-repo" value="'+value.full_name+'" id="'+key+'" '+ ($active_user_repo == value.full_name && 'checked="checked"') + '><label for="'+key+'"><span class="switch-on">ON</span><span class="switch-off">OFF</span><span class="switch-label">'+value.full_name+'</span></label></div>';
         });
         Foundation.utils.S('#modalPopUp').html('<h2 id="firstModalTitle">Your Repositories.</h2>'+
                             '<form><div class="large-10 columns end">'+
@@ -170,6 +129,8 @@ Foundation.utils.S(document).ready(function(){
   Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
   Foundation.utils.S("#label-aplications").text($list_aplication[$active_aplication]);
   Foundation.utils.S("#label-packages").text("");
+  $active_distribution_version = Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val();
+  $active_user_repo = getCookie("active_user_repo");
   $active_packages.forEach(function(id){
       Foundation.utils.S("#label-packages").append($list_packages[id]+"</br>");
   });
@@ -185,6 +146,8 @@ Foundation.utils.S(document).ready(function(){
     if( Foundation.utils.S(this).data('type') == "github" ){
       if (getCookie("userData_github")!= ""){
         setCookie("userData_github","",5);
+        setCookie("active_user_repo","",5);
+        $active_user_repo = "";
       }else{
         connectService(Foundation.utils.S(this));
       }
@@ -200,6 +163,8 @@ Foundation.utils.S(document).ready(function(){
   
   Foundation.utils.S(document.body).on('change', 'input[name="user-repo"]', function(){
     $active_user_repo = Foundation.utils.S(this).val();
+    setCookie("active_user_repo",$active_user_repo);
+    createAlertBox($active_user_repo+' User Repo Selected','success');
   });
   
   Foundation.utils.S(document.body).on('click', '.btn-config', function(){    
@@ -214,9 +179,25 @@ Foundation.utils.S(document).ready(function(){
       }
     }
   });
+  
+  Foundation.utils.S(document.body).on('click', '#btn-create_service', function(){
+    if( $active_packages.length > 0 && $project_name != "" ){
+      if( $active_user_repo == "" ){
+        createAlertBox('Select User Repo','warning');
+      }else{
+        $user_object = new User($list_server_provider[$active_server_provider], JSON.parse(getCookie("userData_digitalocean")).info.name, "github.com", JSON.parse(getCookie("userData_github")).Username);
+        $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", null);
+        $.each($active_packages, function(index, value){
+            $server_object.addPackage($list_packages[value], "lastest", null);
+        });
+        $data_object = new Data($user_object, $server_object);
+      }
+    }
+  });
 
   Foundation.utils.S(document.body).on('change', '.pricing-table[data-type="distribution"] li select', function(){
     Foundation.utils.S("#label-distribution").text($list_distribution[$active_distribution]+" "+Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val());
+    $active_distribution_version = Foundation.utils.S('.pricing-table[data-type="distribution"][data-id="'+ $active_distribution +'"] select').val();
   });
 
   var connectService = function(value){
@@ -300,7 +281,15 @@ Foundation.utils.S(document).ready(function(){
     }
   }
 
-  Foundation.utils.S(document.body).on('keyup', '#input-project_name', function(e){
+  Foundation.utils.S(document.body).on('keyup', '#input-project_name', function(){
+    $project_name = Foundation.utils.S(this).val();
+    Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
+    if(Foundation.utils.S(this).val().toString()=="")
+      Foundation.utils.S("#label-project-name").text("none");
+    validateService();
+  });
+  
+  Foundation.utils.S(document.body).on('focusout', '#input-project_name', function(){
     $project_name = Foundation.utils.S(this).val();
     Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
     if(Foundation.utils.S(this).val().toString()=="")
