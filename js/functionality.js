@@ -1,53 +1,11 @@
-$(document).foundation({
+Foundation.utils.S(document).foundation({
    joyride: {
       cookieMonster: true,
       cookieName: 'JoyRide',
-      cookieDomain: false,
+      cookieDomain: true,
       cookie_expires: 5
    }
- }).foundation('joyride', 'start');
-
-function Server_provider(id, name, image) {
-    this.init();
-}
-
-Server_provider.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-function Distribution(id, name, image) {
-    this.init();
-}
-
-Distribution.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-function Aplication(id, name, image) {
-    this.init();
-}
-
-Aplication.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-function Service(id, name, image) {
-    this.init();
-}
-
-Service.prototype.init = function(id, name, value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-};
-
-Foundation.utils.S(document).ready(function(){
+ }).foundation('joyride', 'start').ready(function(){
 
   var configurationJSON = ''+
     '{ "server_provider" : [' +
