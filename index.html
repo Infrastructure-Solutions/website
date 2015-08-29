@@ -40,7 +40,7 @@
           <form>
             <div class="row">
               <div class="large-12 columns">
-                <input type="text" id="input-project_name" placeholder="Domain.hostname example: Name.web" />
+                <input type="text" id="input-project_name" placeholder="Domain.hostname example: Name.web" pattern="([a-z0-9]){2,15}\.([a-z0-9]){2,15}" title="Format needed: Domain.hostname" autocomplete="off" required/>
               </div>
             </div>
           </form>
@@ -455,6 +455,7 @@
   <script src="js/oauth.js"></script>
   <script src="js/cookies.js"></script>
   <script src="js/objects.js"></script>
+  <script src="js/jquery.formatter.js"></script>
   <script src="js/functionality.js"></script>
 </body>
 </html>
