@@ -293,24 +293,21 @@ Foundation.utils.S(document).foundation({
 
     Foundation.utils.S(document.body).on('input focusout', '#input-project_name', function(event){
       if( Foundation.utils.S(this).is(':invalid') ){
-          if (/([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.test(Foundation.utils.S(this).val())){
-              var result = /([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val());
-              Foundation.utils.S(this).val(result[0]);
-          }else if (/([a-z0-9]){0,15}/.test(Foundation.utils.S(this).val())){
-              if (/([a-z0-9]){1,15}\./.test(Foundation.utils.S(this).val())){
-                if (!/([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.test(Foundation.utils.S(this).val())){
-                    if(/([a-z0-9]){1,15}\./.exec(Foundation.utils.S(this).val())){
-                      var result = /([a-z0-9]){1,15}\./.exec(Foundation.utils.S(this).val());
-                      Foundation.utils.S(this).val(result[0]);
-                    }else{
-                      var result = /([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val());
-                      Foundation.utils.S(this).val(result[0]);
-                    }
-                }
+          if ( /^([a-z0-9]){1,15}/.test(Foundation.utils.S(this).val()) ){ //Match domain
+              if ( /^([a-z0-9]){1,15}\./.test(Foundation.utils.S(this).val()) ){ //Match domain.
+                  if ( /^([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.test(Foundation.utils.S(this).val()) ){ //Match domain.hostname
+                      Foundation.utils.S(this).val( /^([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val())[0] );
+                  }else{
+                      Foundation.utils.S(this).val( /^([a-z0-9]){1,15}\./.exec(Foundation.utils.S(this).val())[0] );
+                  }
               }else{
-                var result = /([a-z0-9]){0,15}/.exec(Foundation.utils.S(this).val());
-                Foundation.utils.S(this).val(result[0]);
+                  Foundation.utils.S(this).val( /^([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val())[0] );
               }
+          }else{
+              if ( /^([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val()) )
+                Foundation.utils.S(this).val( /^([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val())[0] );
+              else
+                Foundation.utils.S(this).val( "" );
           }
           if(Foundation.utils.S(this).val().toString()=="")
             Foundation.utils.S("#label-project-name").text("none");
