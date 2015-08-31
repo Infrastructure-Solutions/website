@@ -16,6 +16,10 @@ p{
     margin: .5em 0;
 }
 
+#add_ssh_key, #close_add_ssh_key{
+    color: #009688;
+}
+
 #btn-create_service{
     margin-top: 4em;
 }

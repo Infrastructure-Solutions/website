@@ -242,7 +242,7 @@
           </ul>
         </div>
         <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
-          <ul class="pricing-table active" data-name="Rails" data-type="aplications" data-id="7">
+          <ul class="pricing-table" data-name="Rails" data-type="aplications" data-id="7">
             <li class="bullet-item"><img class="Rails" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Rails</li>
           </ul>
         </div>
@@ -327,7 +327,7 @@
           </ul>
         </div>
         <div class="large-4 medium-6 small-12 columns end" data-equalizer-watch>
-          <ul class="pricing-table" data-name="application_none" data-type="aplications" data-id="24">
+          <ul class="pricing-table active" data-name="application_none" data-type="aplications" data-id="24">
             <li class="bullet-item"><img class="application_none" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>None</li>
           </ul>
         </div>
@@ -379,12 +379,30 @@
             <li class="bullet-item">Alfonso</li>
           </ul>
         </div>
-        <div class="large-3 medium-6 small-12 columns end">
-          <ul class="pricing-table">
-            <a href="#" id="btn-add_ssh_key" class="button radius expand no-margin">+ Add SSH Key</a>
-          </ul>
-        </div>
-        <p>Adding an SSH key is a recommended security measure. If you choose not to add one, you will receive a root password via email.</p>
+          <div class="large-12 medium-12 small-12 columns end">
+            <p><a href="javascript:void(0);" id="add_ssh_key">+ Add SSH Key</a></p>
+            <p class="add_ssh_key_description">Adding an SSH key is a recommended security measure. If you choose not to add one, you will receive a root password via email.</p>
+            <p><a href="javascript:void(0);" id="close_add_ssh_key">Close</a></p>
+            <form>
+              <div class="row">
+                <div class="large-12 columns">
+                  <textarea cols="50" rows="5" placeholder="SSH Key Content"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                <div class="large-12 columns">
+                  <div class="row">
+                    <div class="small-9 columns">
+                      <input type="text" placeholder="Title">
+                    </div>
+                    <div class="small-3 columns">
+                      <a href="javascript:void(0);" class="button postfix">Add SSH Key</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
       </div>
       <div class="large-12 large-centered medium-12 medium-centered small-12 small-centered columns">
           <a href="javascript:void(0);" id="btn-create_service" class="button radius expand disabled"><i class="step fi-power"></i> Create Service</a>

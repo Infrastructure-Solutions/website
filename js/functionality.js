@@ -54,7 +54,7 @@ Foundation.utils.S(document).foundation({
   var $active_server_provider = 1;
   var $active_distribution = 3;
   var $active_distribution_version = "";
-  var $active_aplication = 7;
+  var $active_aplication = 24;
   var $active_packages = [0, 3];
   
   var changeBtnValue = function(value,text){
