@@ -380,28 +380,42 @@
           </ul>
         </div>
           <div class="large-12 medium-12 small-12 columns end">
-            <p><a href="javascript:void(0);" id="add_ssh_key">+ Add SSH Key</a></p>
-            <p class="add_ssh_key_description">Adding an SSH key is a recommended security measure. If you choose not to add one, you will receive a root password via email.</p>
-            <p><a href="javascript:void(0);" id="close_add_ssh_key">Close</a></p>
-            <form>
-              <div class="row">
-                <div class="large-12 columns">
-                  <textarea cols="50" rows="5" placeholder="SSH Key Content"></textarea>
-                </div>
+            <p><a href="javascript:void(0);" id="show_ssh_key">+ Add SSH Key</a></p>
+            <div class="ssh_key_content hide">
+              <div class="large-offset-9 large-3 medium-9">
+                <p class="right"><a href="javascript:void(0);" id="hide_ssh_key">Close</a></p>
               </div>
-              <div class="row">
-                <div class="large-12 columns">
-                  <div class="row">
-                    <div class="small-9 columns">
-                      <input type="text" placeholder="Title">
-                    </div>
-                    <div class="small-3 columns">
-                      <a href="javascript:void(0);" class="button postfix">Add SSH Key</a>
+              <form>
+                <div class="row">
+                  <div class="columns">
+                    <label class="error">
+                      <textarea id="ssh_key_content_value" cols="50" rows="5" placeholder="SSH Key Content"></textarea>
+                    </label>
+                    <div class="hide" id="ssh_key_content_value_error">
+                      <small class="error hide">SSH Key Content can't be blank</small>
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
+                <div class="row">
+                  <div class="columns">
+                    <div class="row">
+                      <div class="small-9 columns">
+                        <label class="error">
+                          <input type="text" id="ssh_key_content_title" placeholder="Title">
+                        </label>
+                        <div class="hide" id="ssh_key_content_title_error">
+                          <small class="error">SSH Key Title can't be blank</small>
+                        </div>
+                      </div>
+                      <div class="small-3 columns">
+                        <a href="javascript:void(0);" id="save_ssh_key" class="button postfix">Add SSH Key</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <p>Adding an SSH key is a recommended security measure.</p>
           </div>
       </div>
       <div class="large-12 large-centered medium-12 medium-centered small-12 small-centered columns">

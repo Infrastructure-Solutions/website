@@ -6,16 +6,6 @@ Foundation.utils.S(document).foundation({
       cookie_expires: 5
    }
  }).foundation('joyride', 'start').ready(function(){
-  //  
-  //  $('#input-project_name').formatter({
-  //     //'pattern': '{{*********}}.{{**********}}',
-  //     'persistent': false,
-  //      'patterns': [
-  //     //   { '^\d{5}$': 'host: {{99999}}' },
-  //     //   { '^.{6,8}$': 'postal code: {{********}}' },
-  //        { '^.{6,8}$': 'unknown: {{****}}' } //([a-z0-9]){2,15}\.([a-z0-9]){2,15}
-  //      ]
-  //   });//.formatter.addInptType('L', /[A-Z]/);
 
   var configurationJSON = ''+
     '{ "server_provider" : [' +
@@ -47,6 +37,7 @@ Foundation.utils.S(document).foundation({
   var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
   var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine", "None"];
   var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
+  var $user_keys = [];
 
   var $project_name = "";
   var $active_user_repo = "";
@@ -147,6 +138,35 @@ Foundation.utils.S(document).foundation({
   if($active_packages.length==0)
     Foundation.utils.S("#label-packages").append("none");
   updateServiceConection();
+
+  Foundation.utils.S(document.body).on('click', '#show_ssh_key', function(){
+    modifyClass(Foundation.utils.S('.ssh_key_content'),false,"hide");
+    Foundation.utils.S('#show_ssh_key').css("opacity","0.2");
+  });
+  
+  Foundation.utils.S(document.body).on('click', '#hide_ssh_key', function(){
+    modifyClass(Foundation.utils.S('.ssh_key_content'),true,"hide");
+    Foundation.utils.S('#show_ssh_key').css("opacity","1");
+  });
+  
+  Foundation.utils.S(document.body).on('click', '#save_ssh_key', function(){
+    if ( Foundation.utils.S('#ssh_key_content_value').val() != "" && Foundation.utils.S('#ssh_key_content_title').val()!= "" ){
+      console.log(Foundation.utils.S('#ssh_key_content_value').val());
+      console.log(Foundation.utils.S('#ssh_key_content_title').val());
+    }
+    if ( Foundation.utils.S('#ssh_key_content_value').val()== "" ){
+      modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),false,"hide");
+      Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","0");
+    }else{
+      modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
+      Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
+    }
+    if ( Foundation.utils.S('#ssh_key_content_title').val()== "" ){
+      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),false,"hide");
+    }else{
+      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),true,"hide");
+    }
+  });
 
   Foundation.utils.S(document.body).on('click', '.pricing-table', function(){
     selectActive(Foundation.utils.S(this));
