@@ -35,6 +35,16 @@ PublicKeys.prototype.removePublicKey = function(publicKey){
     });
 };
 
+User.prototype.addPublicKey = function(title, key){
+    this.publicKeys.push(new PublicKeys(title, key));
+};
+
+User.prototype.removePublicKey = function(publicKey){
+    this.publicKeys = $.grep(this.publicKeys, function(elem, index) {
+        return elem !== publicKey;
+    });
+};
+
 function User(provider_name, provider_user_name, vcs_url, vcs_user_name) {
     this.init(provider_name, provider_user_name, vcs_url, vcs_user_name);
 }

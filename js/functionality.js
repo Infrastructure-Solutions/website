@@ -124,6 +124,26 @@ Foundation.utils.S(document).foundation({
      }
    });
   }
+  
+  var updatePublicKeys = function(){
+    var $temp_user_keys = "";
+    $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
+      if (index === JSON.parse(getCookie("userData_publickKeys")).length - 1) {
+        $temp_user_keys += '<div class="large-3 medium-6 small-12 columns end">'+
+          '<ul class="pricing-table active" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+            '<li class="bullet-item">'+ item[0] +'</li>'+
+          '</ul>'+
+        '</div>';
+      }else{
+        $temp_user_keys += '<div class="large-3 medium-6 small-12 columns">'+
+          '<ul class="pricing-table active" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+            '<li class="bullet-item">'+ item[0] +'</li>'+
+          '</ul>'+
+        '</div>';
+      }
+    });
+    Foundation.utils.S("#ssh_keys").html($temp_user_keys);
+  }
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
@@ -138,6 +158,7 @@ Foundation.utils.S(document).foundation({
   if($active_packages.length==0)
     Foundation.utils.S("#label-packages").append("none");
   updateServiceConection();
+  updatePublicKeys();
 
   Foundation.utils.S(document.body).on('click', '#show_ssh_key', function(){
     modifyClass(Foundation.utils.S('.ssh_key_content'),false,"hide");
@@ -151,8 +172,16 @@ Foundation.utils.S(document).foundation({
   
   Foundation.utils.S(document.body).on('click', '#save_ssh_key', function(){
     if ( Foundation.utils.S('#ssh_key_content_value').val() != "" && Foundation.utils.S('#ssh_key_content_title').val()!= "" ){
-      console.log(Foundation.utils.S('#ssh_key_content_value').val());
-      console.log(Foundation.utils.S('#ssh_key_content_title').val());
+      $user_keys.push([Foundation.utils.S('#ssh_key_content_title').val(), Foundation.utils.S('#ssh_key_content_value').val()]);
+      setCookie("userData_publickKeys", JSON.stringify($user_keys),5);
+      Foundation.utils.S('#ssh_key_content_value').val("");
+      Foundation.utils.S('#ssh_key_content_title').val("");
+      modifyClass(Foundation.utils.S('.ssh_key_content'),true,"hide");
+      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),false,"hide");
+      modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
+      Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
+      Foundation.utils.S('#show_ssh_key').css("opacity","1");
+      updatePublicKeys();
     }
     if ( Foundation.utils.S('#ssh_key_content_value').val()== "" ){
       modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),false,"hide");
@@ -219,6 +248,9 @@ Foundation.utils.S(document).foundation({
         $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", null);
         $.each($active_packages, function(index, value){
             $server_object.addPackage($list_packages[value], "lastest", null);
+        });
+        $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
+          $user_object.addPublicKey(item[0], item[1]);
         });
         $data_object = new Data($user_object, $server_object);
       }
