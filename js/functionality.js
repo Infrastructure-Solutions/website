@@ -269,6 +269,17 @@ Foundation.utils.S(document).foundation({
             $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
           });
         $data_object = new Data($user_object, $server_object);
+        jQuery.ajax({
+         url: '/iaas/create',
+         type: "POST",
+         beforeSend: function(xhr){
+           xhr.setRequestHeader('userData_github', jQuery.parseJSON(getCookie("userData_github")).AccessToken);
+           xhr.setRequestHeader('userData_digitalOcean', jQuery.parseJSON(getCookie("userData_digitalocean")).access_token);
+         },
+         success: function(data) { 
+            console.log(data);
+         }
+       });
       }
     }
   });
