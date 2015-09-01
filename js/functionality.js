@@ -6,6 +6,16 @@ Foundation.utils.S(document).foundation({
       cookie_expires: 5
    }
  }).foundation('joyride', 'start').ready(function(){
+  //  
+  //  $('#input-project_name').formatter({
+  //     //'pattern': '{{*********}}.{{**********}}',
+  //     'persistent': false,
+  //      'patterns': [
+  //     //   { '^\d{5}$': 'host: {{99999}}' },
+  //     //   { '^.{6,8}$': 'postal code: {{********}}' },
+  //        { '^.{6,8}$': 'unknown: {{****}}' } //([a-z0-9]){2,15}\.([a-z0-9]){2,15}
+  //      ]
+  //   });//.formatter.addInptType('L', /[A-Z]/);
 
   var configurationJSON = ''+
     '{ "server_provider" : [' +
@@ -281,20 +291,36 @@ Foundation.utils.S(document).foundation({
     }
   }
 
-  Foundation.utils.S(document.body).on('keyup', '#input-project_name', function(){
-    $project_name = Foundation.utils.S(this).val();
-    Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
-    if(Foundation.utils.S(this).val().toString()=="")
-      Foundation.utils.S("#label-project-name").text("none");
-    validateService();
-  });
-  
-  Foundation.utils.S(document.body).on('focusout', '#input-project_name', function(){
-    $project_name = Foundation.utils.S(this).val();
-    Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
-    if(Foundation.utils.S(this).val().toString()=="")
-      Foundation.utils.S("#label-project-name").text("none");
-    validateService();
+    Foundation.utils.S(document.body).on('input focusout', '#input-project_name', function(event){
+      if( Foundation.utils.S(this).is(':invalid') ){
+          if ( /^([a-z0-9]){1,15}/.test(Foundation.utils.S(this).val()) ){ //Match domain
+              if ( /^([a-z0-9]){1,15}\./.test(Foundation.utils.S(this).val()) ){ //Match domain.
+                  if ( /^([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.test(Foundation.utils.S(this).val()) ){ //Match domain.hostname
+                      Foundation.utils.S(this).val( /^([a-z0-9]){1,15}\.([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val())[0] );
+                  }else{
+                      Foundation.utils.S(this).val( /^([a-z0-9]){1,15}\./.exec(Foundation.utils.S(this).val())[0] );
+                  }
+              }else{
+                  Foundation.utils.S(this).val( /^([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val())[0] );
+              }
+          }else{
+              if ( /^([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val()) )
+                Foundation.utils.S(this).val( /^([a-z0-9]){1,15}/.exec(Foundation.utils.S(this).val())[0] );
+              else
+                Foundation.utils.S(this).val( "" );
+          }
+          if(Foundation.utils.S(this).val().toString()=="")
+            Foundation.utils.S("#label-project-name").text("none");
+          else
+            Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
+      }else{
+        $project_name = Foundation.utils.S(this).val();
+        if(Foundation.utils.S(this).val().toString()=="")
+          Foundation.utils.S("#label-project-name").text("none");
+        else
+          Foundation.utils.S("#label-project-name").text(Foundation.utils.S(this).val());
+        validateService();
+      }
   });
 
 });
