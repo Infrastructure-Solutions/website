@@ -40,7 +40,9 @@ Foundation.utils.S(document).foundation({
   var $user_keys = [];
 
   var $project_name = "";
+  var $active_user_username = "";
   var $active_user_repo = "";
+  var $active_user_provider = "";
   var $active_user_keys = [];
   var $active_automation_software = 0;
   var $active_server_provider = 1;
@@ -82,6 +84,7 @@ Foundation.utils.S(document).foundation({
   
   var updateServiceConection = function(){
     if (getCookie("userData_github")!= ""){
+      $active_user_username = JSON.parse(getCookie("userData_github")).Username;
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="github"]'),"Disconnect");
       modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]').parent().parent(),true,"active");
       modifyClass(Foundation.utils.S('.btn-connect[data-type="github"]'),true,"alert");
@@ -93,6 +96,7 @@ Foundation.utils.S(document).foundation({
       modifyClass(Foundation.utils.S('.btn-config[data-type="github"]'),true,"hide");
     }
     if (getCookie("userData_digitalocean")!= ""){
+      $active_user_provider = JSON.parse(getCookie("userData_digitalocean")).info.name;
       changeBtnValue(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),"Disconnect");
       modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]').parent().parent(),true,"active");
       modifyClass(Foundation.utils.S('.btn-connect[data-type="digital-ocean"]'),true,"alert");
@@ -127,25 +131,27 @@ Foundation.utils.S(document).foundation({
   }
   
   var updatePublicKeys = function(){
-    var $temp_user_keys = "";
-    $user_keys = [];
-    $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
-      $user_keys.push(item[0], item[1]);
-      if (index === JSON.parse(getCookie("userData_publickKeys")).length - 1) {
-        $temp_user_keys += '<div class="large-3 medium-6 small-12 columns end">'+
-          '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
-            '<li class="bullet-item">'+ item[0] +'</li>'+
-          '</ul>'+
-        '</div>';
-      }else{
-        $temp_user_keys += '<div class="large-3 medium-6 small-12 columns">'+
-          '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
-            '<li class="bullet-item">'+ item[0] +'</li>'+
-          '</ul>'+
-        '</div>';
-      }
-    });
-    Foundation.utils.S("#ssh_keys").html($temp_user_keys);
+    if (getCookie("userData_publickKeys") !== "") {
+      var $temp_user_keys = "";
+      $user_keys = [];
+      $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
+        $user_keys.push(item[0], item[1]);
+        if (index === JSON.parse(getCookie("userData_publickKeys")).length - 1) {
+          $temp_user_keys += '<div class="large-3 medium-6 small-12 columns end">'+
+            '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+              '<li class="bullet-item">'+ item[0] +'</li>'+
+            '</ul>'+
+          '</div>';
+        }else{
+          $temp_user_keys += '<div class="large-3 medium-6 small-12 columns">'+
+            '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+              '<li class="bullet-item">'+ item[0] +'</li>'+
+            '</ul>'+
+          '</div>';
+        }
+      });
+      Foundation.utils.S("#ssh_keys").html($temp_user_keys);
+    }
   }
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
@@ -245,17 +251,23 @@ Foundation.utils.S(document).foundation({
   
   Foundation.utils.S(document.body).on('click', '#btn-create_service', function(){
     if( $active_packages.length > 0 && $project_name != "" ){
-      if( $active_user_repo == "" ){
+      if( $active_user_username == "" ){
+        createAlertBox('Log in GitHub','warning');
+      }else if( $active_user_repo == "" ){
         createAlertBox('Select User Repo','warning');
+      }else if( $active_user_provider == "" ){
+        createAlertBox('Log in DigitalOcean','warning');
       }else{
-        $user_object = new User($list_server_provider[$active_server_provider], JSON.parse(getCookie("userData_digitalocean")).info.name, "github.com", JSON.parse(getCookie("userData_github")).Username);
+        if (getCookie("userData_digitalocean") !== "")
+          $user_object = new User($list_server_provider[$active_server_provider], JSON.parse(getCookie("userData_digitalocean")).info.name, "github.com", JSON.parse(getCookie("userData_github")).Username);
         $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", null);
         $.each($active_packages, function(index, value){
             $server_object.addPackage($list_packages[value], "lastest", null);
         });
-        $.each($active_user_keys, function(index){
-          $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
-        });
+        if (getCookie("userData_publickKeys") !== "")
+          $.each($active_user_keys, function(index){
+            $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
+          });
         $data_object = new Data($user_object, $server_object);
       }
     }
@@ -342,9 +354,10 @@ Foundation.utils.S(document).foundation({
         $active_user_keys.push(value.data('id'));
       }
       Foundation.utils.S("#label-keys").text("");
-      $active_user_keys.forEach(function(index){
-          Foundation.utils.S("#label-keys").append(JSON.parse(getCookie("userData_publickKeys"))[index][0]+"</br>");
-      });
+      if (getCookie("userData_publickKeys") !== "")
+        $active_user_keys.forEach(function(index){
+            Foundation.utils.S("#label-keys").append(JSON.parse(getCookie("userData_publickKeys"))[index][0]+"</br>");
+        });
       if($active_user_keys.length==0)
         Foundation.utils.S("#label-keys").append("none");
       changeActive(value);
