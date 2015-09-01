@@ -242,7 +242,7 @@
           </ul>
         </div>
         <div class="large-4 medium-6 small-12 columns" data-equalizer-watch>
-          <ul class="pricing-table active" data-name="Rails" data-type="aplications" data-id="7">
+          <ul class="pricing-table" data-name="Rails" data-type="aplications" data-id="7">
             <li class="bullet-item"><img class="Rails" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Rails</li>
           </ul>
         </div>
@@ -326,6 +326,11 @@
             <li class="bullet-item"><img class="Redmine" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Redmine</li>
           </ul>
         </div>
+        <div class="large-4 medium-6 small-12 columns end" data-equalizer-watch>
+          <ul class="pricing-table active" data-name="application_none" data-type="aplications" data-id="24">
+            <li class="bullet-item"><img class="application_none" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>None</li>
+          </ul>
+        </div>
       </div>
 
       <div class="row" data-magellan-destination="packages" id="packages">
@@ -359,27 +364,46 @@
 
       <div class="row" data-magellan-destination="ssh-keys" id="ssh-keys">
         <h2><i class="step fi-key"></i> Add SSH Keys</h2>
-        <div class="large-3 medium-6 small-12 columns">
-          <ul class="pricing-table active">
-            <li class="bullet-item">Leonel</li>
-          </ul>
+        <div id="ssh_keys">
         </div>
-        <div class="large-3 medium-6 small-12 columns">
-          <ul class="pricing-table">
-            <li class="bullet-item">Paco</li>
-          </ul>
-        </div>
-        <div class="large-3 medium-6 small-12 columns">
-          <ul class="pricing-table active">
-            <li class="bullet-item">Alfonso</li>
-          </ul>
-        </div>
-        <div class="large-3 medium-6 small-12 columns end">
-          <ul class="pricing-table">
-            <a href="#" id="btn-add_ssh_key" class="button radius expand no-margin">+ Add SSH Key</a>
-          </ul>
-        </div>
-        <p>Adding an SSH key is a recommended security measure. If you choose not to add one, you will receive a root password via email.</p>
+          <div class="large-12 medium-12 small-12 columns end">
+            <p><a href="javascript:void(0);" id="show_ssh_key">+ Add SSH Key</a></p>
+            <div class="ssh_key_content hide">
+              <div class="large-offset-9 large-3 medium-9">
+                <p class="right"><a href="javascript:void(0);" id="hide_ssh_key">Close</a></p>
+              </div>
+              <form>
+                <div class="row">
+                  <div class="columns">
+                    <label class="error">
+                      <textarea id="ssh_key_content_value" cols="50" rows="5" placeholder="SSH Key Content"></textarea>
+                    </label>
+                    <div class="hide" id="ssh_key_content_value_error">
+                      <small class="error hide">SSH Key Content can't be blank</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="columns">
+                    <div class="row">
+                      <div class="small-9 columns">
+                        <label class="error">
+                          <input type="text" id="ssh_key_content_title" maxlength="10" placeholder="Title">
+                        </label>
+                        <div class="hide" id="ssh_key_content_title_error">
+                          <small class="error">SSH Key Title can't be blank</small>
+                        </div>
+                      </div>
+                      <div class="small-3 columns">
+                        <a href="javascript:void(0);" id="save_ssh_key" class="button postfix">Add SSH Key</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <p>Adding an SSH key is a recommended security measure.</p>
+          </div>
       </div>
       <div class="large-12 large-centered medium-12 medium-centered small-12 small-centered columns">
           <a href="javascript:void(0);" id="btn-create_service" class="button radius expand disabled"><i class="step fi-power"></i> Create Service</a>
@@ -401,8 +425,7 @@
         <h4 class="color-green"><i class="step fi-archive"></i> Packages</h4>
         <p id="label-packages">none</p>
         <h4 class="color-green"><i class="step fi-key"></i> SSH Keys</h4>
-        <p id="label-keys">Leonel</p>
-        <p id="label-keys">Alfonso</p>
+        <p id="label-keys">none</p>
       </div>
     </div>
   </div>

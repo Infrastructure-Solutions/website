@@ -6,16 +6,6 @@ Foundation.utils.S(document).foundation({
       cookie_expires: 5
    }
  }).foundation('joyride', 'start').ready(function(){
-  //  
-  //  $('#input-project_name').formatter({
-  //     //'pattern': '{{*********}}.{{**********}}',
-  //     'persistent': false,
-  //      'patterns': [
-  //     //   { '^\d{5}$': 'host: {{99999}}' },
-  //     //   { '^.{6,8}$': 'postal code: {{********}}' },
-  //        { '^.{6,8}$': 'unknown: {{****}}' } //([a-z0-9]){2,15}\.([a-z0-9]){2,15}
-  //      ]
-  //   });//.formatter.addInptType('L', /[A-Z]/);
 
   var configurationJSON = ''+
     '{ "server_provider" : [' +
@@ -45,16 +35,18 @@ Foundation.utils.S(document).foundation({
   var $list_automation_software = ["Puppet","Ansible","Chef"];
   var $list_server_provider = ["Amazon Web Services","Digital Ocean","Google Cloud","None"];
   var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
-  var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine"];
+  var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine", "None"];
   var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
+  var $user_keys = [];
 
   var $project_name = "";
   var $active_user_repo = "";
+  var $active_user_keys = [];
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
   var $active_distribution_version = "";
-  var $active_aplication = 7;
+  var $active_aplication = 24;
   var $active_packages = [0, 3];
   
   var changeBtnValue = function(value,text){
@@ -133,6 +125,28 @@ Foundation.utils.S(document).foundation({
      }
    });
   }
+  
+  var updatePublicKeys = function(){
+    var $temp_user_keys = "";
+    $user_keys = [];
+    $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
+      $user_keys.push(item[0], item[1]);
+      if (index === JSON.parse(getCookie("userData_publickKeys")).length - 1) {
+        $temp_user_keys += '<div class="large-3 medium-6 small-12 columns end">'+
+          '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+            '<li class="bullet-item">'+ item[0] +'</li>'+
+          '</ul>'+
+        '</div>';
+      }else{
+        $temp_user_keys += '<div class="large-3 medium-6 small-12 columns">'+
+          '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+            '<li class="bullet-item">'+ item[0] +'</li>'+
+          '</ul>'+
+        '</div>';
+      }
+    });
+    Foundation.utils.S("#ssh_keys").html($temp_user_keys);
+  }
 
   Foundation.utils.S("#label-automation-software").text($list_automation_software[$active_automation_software]);
   Foundation.utils.S("#label-server-provider").text($list_server_provider[$active_server_provider]);
@@ -147,6 +161,45 @@ Foundation.utils.S(document).foundation({
   if($active_packages.length==0)
     Foundation.utils.S("#label-packages").append("none");
   updateServiceConection();
+  updatePublicKeys();
+
+  Foundation.utils.S(document.body).on('click', '#show_ssh_key', function(){
+    modifyClass(Foundation.utils.S('.ssh_key_content'),false,"hide");
+    Foundation.utils.S('#show_ssh_key').css("opacity","0.2");
+  });
+  
+  Foundation.utils.S(document.body).on('click', '#hide_ssh_key', function(){
+    modifyClass(Foundation.utils.S('.ssh_key_content'),true,"hide");
+    Foundation.utils.S('#show_ssh_key').css("opacity","1");
+  });
+  
+  Foundation.utils.S(document.body).on('click', '#save_ssh_key', function(){
+    if ( Foundation.utils.S('#ssh_key_content_value').val() != "" && Foundation.utils.S('#ssh_key_content_title').val()!= "" ){
+      $user_keys.push([Foundation.utils.S('#ssh_key_content_title').val(), Foundation.utils.S('#ssh_key_content_value').val()]);
+      setCookie("userData_publickKeys", JSON.stringify($user_keys),5);
+      Foundation.utils.S('#ssh_key_content_value').val("");
+      Foundation.utils.S('#ssh_key_content_title').val("");
+      modifyClass(Foundation.utils.S('.ssh_key_content'),true,"hide");
+      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),true,"hide");
+      modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
+      Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
+      Foundation.utils.S('#show_ssh_key').css("opacity","1");
+      updatePublicKeys();
+    }else{
+      if ( Foundation.utils.S('#ssh_key_content_value').val()== "" ){
+        modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),false,"hide");
+        Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","0");
+      }else{
+        modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
+        Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
+      }
+      if ( Foundation.utils.S('#ssh_key_content_title').val()== "" ){
+        modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),false,"hide");
+      }else{
+        modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),true,"hide");
+      }
+    }
+  });
 
   Foundation.utils.S(document.body).on('click', '.pricing-table', function(){
     selectActive(Foundation.utils.S(this));
@@ -199,6 +252,9 @@ Foundation.utils.S(document).foundation({
         $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", null);
         $.each($active_packages, function(index, value){
             $server_object.addPackage($list_packages[value], "lastest", null);
+        });
+        $.each($active_user_keys, function(index){
+          $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
         });
         $data_object = new Data($user_object, $server_object);
       }
@@ -278,6 +334,19 @@ Foundation.utils.S(document).foundation({
       });
       if($active_packages.length==0)
         Foundation.utils.S("#label-packages").append("none");
+      changeActive(value);
+    }else if( value.data('type') == "public_keys" ){
+      if( $active_user_keys.indexOf(value.data('id')) != -1 ){
+        $active_user_keys.splice($active_user_keys.indexOf(value.data('id')),1);
+      }else{
+        $active_user_keys.push(value.data('id'));
+      }
+      Foundation.utils.S("#label-keys").text("");
+      $active_user_keys.forEach(function(index){
+          Foundation.utils.S("#label-keys").append(JSON.parse(getCookie("userData_publickKeys"))[index][0]+"</br>");
+      });
+      if($active_user_keys.length==0)
+        Foundation.utils.S("#label-keys").append("none");
       changeActive(value);
     }
     validateService();

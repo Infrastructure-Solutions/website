@@ -16,8 +16,16 @@ p{
     margin: .5em 0;
 }
 
+#show_ssh_key, #hide_ssh_key{
+    color: #009688;
+}
+
 #btn-create_service{
     margin-top: 4em;
+}
+
+#ssh_key_content_value{
+    margin-bottom: 1em;
 }
 
 .bullet-item .button{
@@ -132,8 +140,11 @@ p{
 .Redmine{
     background: url(../img/aplications_icons.png) -1456px 0;
 }
+.application_none{
+    background: url(../img/aplications_icons.png) -1655px 0;
+}
 
-.freeBSDAMP, .LAMP, .LEMP, .MEAN, .Joomla, .Drone, .Ghost, .Rails, .Drupal, .MongoDB, .Node, .Cassandra, .Stack, .Django, .Docker, .Magento, .GitLab, .MumbleServer, .MediaWiki, .WordPress, .OwnCloud, .Dokku, .PHPMyAdmin, .Redmine{
+.freeBSDAMP, .LAMP, .LEMP, .MEAN, .Joomla, .Drone, .Ghost, .Rails, .Drupal, .MongoDB, .Node, .Cassandra, .Stack, .Django, .Docker, .Magento, .GitLab, .MumbleServer, .MediaWiki, .WordPress, .OwnCloud, .Dokku, .PHPMyAdmin, .Redmine, .application_none{
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -144,7 +155,7 @@ p{
     margin-right: 10px;
 }
 
-.pricing-table:hover .bullet-item .freeBSDAMP, .pricing-table:hover .bullet-item .LAMP, .pricing-table:hover .bullet-item .LEMP, .pricing-table:hover .bullet-item .MEAN, .pricing-table:hover .bullet-item .Joomla, .pricing-table:hover .bullet-item .Drone, .pricing-table:hover .bullet-item .Ghost, .pricing-table:hover .bullet-item .Rails, .pricing-table:hover .bullet-item .Drupal, .pricing-table:hover .bullet-item .MongoDB, .pricing-table:hover .bullet-item .Node, .pricing-table:hover .bullet-item .Cassandra, .pricing-table:hover .bullet-item .Stack, .pricing-table:hover .bullet-item .Django, .pricing-table:hover .bullet-item .Docker, .pricing-table:hover .bullet-item .Magento, .pricing-table:hover .bullet-item .GitLab, .pricing-table:hover .bullet-item .MumbleServer, .pricing-table:hover .bullet-item .MediaWiki, .pricing-table:hover .bullet-item .WordPress, .pricing-table:hover .bullet-item .OwnCloud, .pricing-table:hover .bullet-item .Dokku, .pricing-table:hover .bullet-item .PHPMyAdmin, .pricing-table:hover .bullet-item .Redmine{
+.pricing-table:hover .bullet-item .freeBSDAMP, .pricing-table:hover .bullet-item .LAMP, .pricing-table:hover .bullet-item .LEMP, .pricing-table:hover .bullet-item .MEAN, .pricing-table:hover .bullet-item .Joomla, .pricing-table:hover .bullet-item .Drone, .pricing-table:hover .bullet-item .Ghost, .pricing-table:hover .bullet-item .Rails, .pricing-table:hover .bullet-item .Drupal, .pricing-table:hover .bullet-item .MongoDB, .pricing-table:hover .bullet-item .Node, .pricing-table:hover .bullet-item .Cassandra, .pricing-table:hover .bullet-item .Stack, .pricing-table:hover .bullet-item .Django, .pricing-table:hover .bullet-item .Docker, .pricing-table:hover .bullet-item .Magento, .pricing-table:hover .bullet-item .GitLab, .pricing-table:hover .bullet-item .MumbleServer, .pricing-table:hover .bullet-item .MediaWiki, .pricing-table:hover .bullet-item .WordPress, .pricing-table:hover .bullet-item .OwnCloud, .pricing-table:hover .bullet-item .Dokku, .pricing-table:hover .bullet-item .PHPMyAdmin, .pricing-table:hover .bullet-item .Redmine, .pricing-table:hover .bullet-item .application_none{
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
