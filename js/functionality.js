@@ -41,6 +41,7 @@ Foundation.utils.S(document).foundation({
 
   var $project_name = "";
   var $active_user_repo = "";
+  var $active_user_keys = [];
   var $active_automation_software = 0;
   var $active_server_provider = 1;
   var $active_distribution = 3;
@@ -127,16 +128,18 @@ Foundation.utils.S(document).foundation({
   
   var updatePublicKeys = function(){
     var $temp_user_keys = "";
+    $user_keys = [];
     $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
+      $user_keys.push(item[0], item[1]);
       if (index === JSON.parse(getCookie("userData_publickKeys")).length - 1) {
         $temp_user_keys += '<div class="large-3 medium-6 small-12 columns end">'+
-          '<ul class="pricing-table active" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+          '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
             '<li class="bullet-item">'+ item[0] +'</li>'+
           '</ul>'+
         '</div>';
       }else{
         $temp_user_keys += '<div class="large-3 medium-6 small-12 columns">'+
-          '<ul class="pricing-table active" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
+          '<ul class="pricing-table" data-name="'+ item[0] +'" data-type="public_keys" data-id="'+ index +'">'+
             '<li class="bullet-item">'+ item[0] +'</li>'+
           '</ul>'+
         '</div>';
@@ -177,23 +180,24 @@ Foundation.utils.S(document).foundation({
       Foundation.utils.S('#ssh_key_content_value').val("");
       Foundation.utils.S('#ssh_key_content_title').val("");
       modifyClass(Foundation.utils.S('.ssh_key_content'),true,"hide");
-      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),false,"hide");
+      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),true,"hide");
       modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
       Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
       Foundation.utils.S('#show_ssh_key').css("opacity","1");
       updatePublicKeys();
-    }
-    if ( Foundation.utils.S('#ssh_key_content_value').val()== "" ){
-      modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),false,"hide");
-      Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","0");
     }else{
-      modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
-      Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
-    }
-    if ( Foundation.utils.S('#ssh_key_content_title').val()== "" ){
-      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),false,"hide");
-    }else{
-      modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),true,"hide");
+      if ( Foundation.utils.S('#ssh_key_content_value').val()== "" ){
+        modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),false,"hide");
+        Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","0");
+      }else{
+        modifyClass(Foundation.utils.S('#ssh_key_content_value_error'),true,"hide");
+        Foundation.utils.S('#ssh_key_content_value').css("margin-bottom","1em");
+      }
+      if ( Foundation.utils.S('#ssh_key_content_title').val()== "" ){
+        modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),false,"hide");
+      }else{
+        modifyClass(Foundation.utils.S('#ssh_key_content_title_error'),true,"hide");
+      }
     }
   });
 
@@ -249,8 +253,8 @@ Foundation.utils.S(document).foundation({
         $.each($active_packages, function(index, value){
             $server_object.addPackage($list_packages[value], "lastest", null);
         });
-        $.each(JSON.parse(getCookie("userData_publickKeys")), function(index, item){
-          $user_object.addPublicKey(item[0], item[1]);
+        $.each($active_user_keys, function(index){
+          $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
         });
         $data_object = new Data($user_object, $server_object);
       }
@@ -330,6 +334,13 @@ Foundation.utils.S(document).foundation({
       });
       if($active_packages.length==0)
         Foundation.utils.S("#label-packages").append("none");
+      changeActive(value);
+    }else if( value.data('type') == "public_keys" ){
+      if( $active_user_keys.indexOf(value.data('id')) != -1 ){
+        $active_user_keys.splice($active_user_keys.indexOf(value.data('id')),1);
+      }else{
+        $active_user_keys.push(value.data('id'));
+      }
       changeActive(value);
     }
     validateService();
