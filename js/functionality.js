@@ -341,6 +341,12 @@ Foundation.utils.S(document).foundation({
       }else{
         $active_user_keys.push(value.data('id'));
       }
+      Foundation.utils.S("#label-keys").text("");
+      $active_user_keys.forEach(function(index){
+          Foundation.utils.S("#label-keys").append(JSON.parse(getCookie("userData_publickKeys"))[index][0]+"</br>");
+      });
+      if($active_user_keys.length==0)
+        Foundation.utils.S("#label-keys").append("none");
       changeActive(value);
     }
     validateService();
