@@ -33,6 +33,7 @@ p{
 }
 
 .active li img{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -52,6 +53,7 @@ p{
 }
 
 .puppet, .ansible, .chef{
+    filter: blur(1px) grayscale(90%);
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -62,6 +64,7 @@ p{
 }
 
 .pricing-table:hover .price .puppet, .pricing-table:hover .price .ansible, .pricing-table:hover .price .chef{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -145,6 +148,7 @@ p{
 }
 
 .freeBSDAMP, .LAMP, .LEMP, .MEAN, .Joomla, .Drone, .Ghost, .Rails, .Drupal, .MongoDB, .Node, .Cassandra, .Stack, .Django, .Docker, .Magento, .GitLab, .MumbleServer, .MediaWiki, .WordPress, .OwnCloud, .Dokku, .PHPMyAdmin, .Redmine, .application_none{
+    filter: blur(1px) grayscale(90%);
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -156,6 +160,7 @@ p{
 }
 
 .pricing-table:hover .bullet-item .freeBSDAMP, .pricing-table:hover .bullet-item .LAMP, .pricing-table:hover .bullet-item .LEMP, .pricing-table:hover .bullet-item .MEAN, .pricing-table:hover .bullet-item .Joomla, .pricing-table:hover .bullet-item .Drone, .pricing-table:hover .bullet-item .Ghost, .pricing-table:hover .bullet-item .Rails, .pricing-table:hover .bullet-item .Drupal, .pricing-table:hover .bullet-item .MongoDB, .pricing-table:hover .bullet-item .Node, .pricing-table:hover .bullet-item .Cassandra, .pricing-table:hover .bullet-item .Stack, .pricing-table:hover .bullet-item .Django, .pricing-table:hover .bullet-item .Docker, .pricing-table:hover .bullet-item .Magento, .pricing-table:hover .bullet-item .GitLab, .pricing-table:hover .bullet-item .MumbleServer, .pricing-table:hover .bullet-item .MediaWiki, .pricing-table:hover .bullet-item .WordPress, .pricing-table:hover .bullet-item .OwnCloud, .pricing-table:hover .bullet-item .Dokku, .pricing-table:hover .bullet-item .PHPMyAdmin, .pricing-table:hover .bullet-item .Redmine, .pricing-table:hover .bullet-item .application_none{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -179,6 +184,7 @@ p{
 }
 
 .Sinatra, .Ruby, .Haskell, .Emacs, .VIM{
+    filter: blur(1px) grayscale(90%);
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -190,6 +196,7 @@ p{
 }
 
 .pricing-table:hover .bullet-item .Sinatra, .pricing-table:hover .bullet-item .Ruby, .pricing-table:hover .bullet-item .Haskell, .pricing-table:hover .bullet-item .Emacs, .pricing-table:hover .bullet-item .VIM{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -207,6 +214,7 @@ p{
 }
 
 .GitHub, .DigitalOcean, .Travis{
+    filter: blur(1px) grayscale(90%);
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -218,6 +226,7 @@ p{
 }
 
 .pricing-table:hover .bullet-item .GitHub, .pricing-table:hover .bullet-item .DigitalOcean, .pricing-table:hover .bullet-item .Travis{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -238,6 +247,8 @@ p{
 }
 
 .amazon_web_services, .digital_ocean, .google_cloud, .none{
+    filter: blur(1px) grayscale(90%);
+    filter: blur(1px) grayscale(90%);
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -248,6 +259,7 @@ p{
 }
 
 .pricing-table:hover .price .amazon_web_services, .pricing-table:hover .price .digital_ocean, .pricing-table:hover .price .google_cloud, .pricing-table:hover .price .none{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
@@ -274,6 +286,7 @@ p{
 }
 
 .Ubuntu, .FreeBSD, .Fedora, .Debian, .CoreOS, .CentOS{
+    filter: blur(1px) grayscale(90%);
     -webkit-filter: blur(1px) grayscale(90%);
     -moz-filter: blur(1px) grayscale(90%);
     -o-filter: blur(1px) grayscale(90%);
@@ -284,6 +297,7 @@ p{
 }
 
 .pricing-table:hover .price .Ubuntu, .pricing-table:hover .price .FreeBSD, .pricing-table:hover .price .Fedora, .pricing-table:hover .price .Debian, .pricing-table:hover .price .CoreOS, .pricing-table:hover .price .CentOS{
+    filter: none;
     -webkit-filter: none;
     -moz-filter: none;
     -o-filter: none;
