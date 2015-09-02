@@ -264,11 +264,21 @@ Foundation.utils.S(document).foundation({
         $.each($active_packages, function(index, value){
             $server_object.addPackage($list_packages[value], "lastest", "");
         });
+        $server_object.addPackage("git", "lastest", "");
+        var vhost = {vhost:[{name:"tequilaware.com", path:"/var/www/tequilaware.com", vcsrepo:{path:"/var/www/tequilaware.com", version:"latest", source:"https://github.com/ramonbadillo/webpage.git"}}] , location: []}
+        $server_object.addPackage("nginx", "lastest", vhost);
+        var nginxPackageConfig = {vhost:"/var/www/tequilaware.com", version: "latest", source: "https://github.com/ramonbadillo/webpage.git"};
         if (getCookie("userData_publickKeys") !== "")
           $.each($active_user_keys, function(index){
             $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
           });
         $data_object = new Data($user_object, $server_object);
+        console.log(JSON.stringify($data_object, function (key, value) {
+          if (value == "") {
+            return undefined;
+          }
+          return value;
+        }));
         var xhr = new XMLHttpRequest();
         xhr.open('POST', '/iaas/create', true);
         xhr.responseType = 'arraybuffer';
