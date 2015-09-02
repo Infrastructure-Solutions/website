@@ -32,11 +32,11 @@ Foundation.utils.S(document).foundation({
       ' ]' +
     '}';
 
-  var $list_automation_software = ["Puppet","Ansible","Chef"];
-  var $list_server_provider = ["Amazon Web Services","Digital Ocean","Google Cloud","None"];
-  var $list_distribution = ["Ubuntu",  "FreeBSD",  "Fedora",  "Debian",  "CoreOS", "CentOS"];
-  var $list_aplication = ["freeBSDAMP",   "LAMP",   "LEMP",   "MEAN",   "Joomla",   "Drone",   "Ghost",   "Rails",  "Drupal",   "MongoDB",   "Node",   "Cassandra",   "Stack",   "Django",   "Docker",   "Magento",   "GitLab",   "MumbleServer",   "MediaWiki",   "WordPress", "OwnCloud",   "Dokku",   "PHPMyAdmin",   "Redmine", "None"];
-  var $list_packages = ["Sinatra",   "Ruby",   "Haskell",   "Emacs",   "VIM"];
+  var $list_automation_software = ["puppet","ansible","chef"];
+  var $list_server_provider = ["amazonwebservices", "digitalocean", "googlecloud", "none"];
+  var $list_distribution = ["ubuntu",  "freebsd",  "fedora",  "debian",  "coreos", "centos"];
+  var $list_aplication = ["freebsdamp",   "lamp",   "lemp",   "mean",   "joomla",   "drone",   "ghost",   "rails",  "drupal",   "mongodb",   "node",   "cassandra",   "stack",   "django",   "docker",   "magento",   "gitlab",   "mumbleserver",   "mediawiki",   "wordpress", "owncloud",   "dokku",   "phpmyadmin",   "redmine", "none"];
+  var $list_packages = ["sinatra",   "ruby",   "haskell",   "emacs",   "vim"];
   var $user_keys = [];
 
   var $project_name = "";
@@ -260,26 +260,73 @@ Foundation.utils.S(document).foundation({
       }else{
         if (getCookie("userData_digitalocean") !== "")
           $user_object = new User($list_server_provider[$active_server_provider], JSON.parse(getCookie("userData_digitalocean")).info.name, "github.com", JSON.parse(getCookie("userData_github")).Username);
-        $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", null);
+        $server_object = new Server($project_name.split('.')[0],$project_name.split('.')[1], $list_automation_software[$active_automation_software], $list_distribution[$active_distribution], $active_distribution_version, $list_aplication[$active_aplication], "latest", "");
         $.each($active_packages, function(index, value){
-            $server_object.addPackage($list_packages[value], "lastest", null);
+            $server_object.addPackage($list_packages[value], "lastest", "");
         });
+        $server_object.addPackage("git", "lastest", "");
+        var vhost = {vhost:[{name:"tequilaware.com", path:"/var/www/tequilaware.com", vcsrepo:{path:"/var/www/tequilaware.com", version:"latest", source:"https://github.com/ramonbadillo/webpage.git"}}] , location: []}
+        $server_object.addPackage("nginx", "lastest", vhost);
+        var nginxPackageConfig = {vhost:"/var/www/tequilaware.com", version: "latest", source: "https://github.com/ramonbadillo/webpage.git"};
         if (getCookie("userData_publickKeys") !== "")
           $.each($active_user_keys, function(index){
             $user_object.addPublicKey(JSON.parse(getCookie("userData_publickKeys"))[index][0], JSON.parse(getCookie("userData_publickKeys"))[index][1]);
           });
         $data_object = new Data($user_object, $server_object);
-        jQuery.ajax({
-         url: '/iaas/create',
-         type: "POST",
-         beforeSend: function(xhr){
-           xhr.setRequestHeader('userData_github', jQuery.parseJSON(getCookie("userData_github")).AccessToken);
-           xhr.setRequestHeader('userData_digitalOcean', jQuery.parseJSON(getCookie("userData_digitalocean")).access_token);
-         },
-         success: function(data) { 
-            console.log(data);
-         }
-       });
+        console.log(JSON.stringify($data_object, function (key, value) {
+          if (value == "") {
+            return undefined;
+          }
+          return value;
+        }));
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/iaas/create', true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function () {
+            if (this.status === 200) {
+                var filename = "";
+                var disposition = xhr.getResponseHeader('Content-Disposition');
+                if (disposition && disposition.indexOf('attachment') !== -1) {
+                    var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                    var matches = filenameRegex.exec(disposition);
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                }
+                var type = xhr.getResponseHeader('Content-Type');
+
+                var blob = new Blob([new Uint8Array(this.response)], { type: type });
+                if (typeof window.navigator.msSaveBlob !== 'undefined') {
+                    // IE workaround for "HTML7007: One or more blob URLs were revoked by closing the blob for which they were created. These URLs will no longer resolve as the data backing the URL has been freed."
+                    window.navigator.msSaveBlob(blob, filename);
+                } else {
+                    var URL = window.URL || window.webkitURL;
+                    var downloadUrl = URL.createObjectURL(blob);
+
+                    if (filename) {
+                        // use HTML5 a[download] attribute to specify filename
+                        var a = document.createElement("a");
+                        // safari doesn't support this yet
+                        if (typeof a.download === 'undefined') {
+                            window.location = downloadUrl;
+                        } else {
+                            a.href = downloadUrl;
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                        }
+                    } else {
+                        window.location = downloadUrl;
+                    }
+
+                    setTimeout(function () { URL.revokeObjectURL(downloadUrl); }, 100); // cleanup
+                }
+            }
+        };
+        xhr.send(JSON.stringify($data_object, function (key, value) {
+          if (value == "") {
+            return undefined;
+          }
+          return value;
+        }));
       }
     }
   });
