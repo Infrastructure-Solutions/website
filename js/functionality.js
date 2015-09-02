@@ -285,7 +285,10 @@ Foundation.utils.S(document).foundation({
           redirectUrl: 'github/github_oauth_cb',
           callback: function(data)
           {
-              setCookie("userData_github",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
+              jQuery(data.document.getElementById("raw")).remove();
+              jQuery(data.document.getElementsByTagName("title")).remove();
+              var $content = JSON.stringify(jQuery.parseJSON(jQuery(data.document.body).text()));
+              setCookie("userData_github",$content,5);
               createAlertBox('Success GitHub Logging.','success');
               updateServiceConection();
               showUserRepos();
@@ -297,7 +300,10 @@ Foundation.utils.S(document).foundation({
           redirectUrl: 'digitalocean/do_callback',
           callback: function(data)
           {
-              setCookie("userData_digitalocean",data.document.body.getElementsByTagName("pre")[0].innerHTML,5);
+              jQuery(data.document.getElementById("raw")).remove();
+              jQuery(data.document.getElementsByTagName("title")).remove();
+              var $content = JSON.stringify(jQuery.parseJSON(jQuery(data.document.body).text()));
+              setCookie("userData_digitalocean",$content,5);
               createAlertBox('Success Digital Ocean Logging.','success');
               updateServiceConection();
           }
