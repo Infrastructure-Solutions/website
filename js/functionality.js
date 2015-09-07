@@ -250,7 +250,7 @@ Foundation.utils.S(document).foundation({
   });
   
   Foundation.utils.S(document.body).on('click', '#btn-create_service', function(){
-    if( $active_packages.length > 0 && $project_name != "" ){
+    if( $project_name != "" ){
       if( $active_user_username == "" ){
         createAlertBox('Log in GitHub','warning');
       }else if( $active_user_repo == "" ){
@@ -289,7 +289,7 @@ Foundation.utils.S(document).foundation({
                 if (disposition && disposition.indexOf('attachment') !== -1) {
                     var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
                     var matches = filenameRegex.exec(disposition);
-                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
+                    if (matches != null && matches[1]) filename = 'tequilaware.zip';
                 }
                 var type = xhr.getResponseHeader('Content-Type');
 
@@ -430,7 +430,7 @@ Foundation.utils.S(document).foundation({
   }
 
   var validateService = function(){
-    if( $active_packages.length > 0 && $project_name != "" ){
+    if( $project_name != "" ){
       Foundation.utils.S("#btn-create_service").removeClass("disabled");
     }else{
       Foundation.utils.S("#btn-create_service").addClass("disabled");
