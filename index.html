@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infraestructura Automatizada Como Servicio</title>
+  <title>Tinkerware</title>
   <link rel="stylesheet" href="css/foundation.css" />
   <link rel="stylesheet" href="css/foundation-icons.css" />
   <link rel="stylesheet" href="css/theme.css" />
@@ -40,7 +40,7 @@
           <form>
             <div class="row">
               <div class="large-12 columns">
-                <input type="text" id="input-project_name" placeholder="nombreproyecto.nombreservidor" pattern="([a-z0-9]){2,15}\.([a-z0-9]){2,15}" title="Format needed: nombreproyecto.nombreservidor" autocomplete="off" required/>
+                <input type="text" id="input-project_name" placeholder="projectname.servername" pattern="([a-z0-9]){2,15}\.([a-z0-9]){2,15}" title="Format needed: nombreproyecto.nombreservidor" autocomplete="off" required/>
               </div>
             </div>
           </form>
@@ -463,8 +463,12 @@
       <h4><i class="step fi-info"></i> Step #6</h4>
       <p>Choose an preinstaled aplication.</p>
     </li>
-    <li data-id="ssh-keys" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade;">
+    <li data-id="packages" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade;">
       <h4><i class="step fi-info"></i> Step #7</h4>
+      <p>Add packages.</p>
+    </li>
+    <li data-id="ssh-keys" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade;">
+      <h4><i class="step fi-info"></i> Step #8</h4>
       <p>Upload public keys to access your services.</p>
     </li>
     <li data-id="btn-create_service" data-button="End" data-options="tip_location:top;tip_animation:fade;">
