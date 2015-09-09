@@ -289,7 +289,7 @@ Foundation.utils.S(document).foundation({
                 if (disposition && disposition.indexOf('attachment') !== -1) {
                     var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
                     var matches = filenameRegex.exec(disposition);
-                    if (matches != null && matches[1]) filename = 'tequilaware.zip';
+                    if (matches != null && matches[1]) filename = matches[1].replace(/['"]/g, '');
                 }
                 var type = xhr.getResponseHeader('Content-Type');
 
