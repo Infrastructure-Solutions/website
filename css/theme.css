@@ -409,6 +409,14 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus
     display: none;
 }
 
+@media only screen and (min-width: 64.063em) {
+    .alert-box{
+        position: fixed;
+        width: 339px;
+        z-index: 9999;
+    }
+}
+
 @media only screen and (max-width: 40.063em) {
     .small-image{
         zoom:0.25;
