@@ -7,31 +7,6 @@ Foundation.utils.S(document).foundation({
    }
  }).foundation('joyride', 'start').ready(function(){
 
-  var configurationJSON = ''+
-    '{ "server_provider" : [' +
-      '{ "slug":"amazon_web_services", "name":"Amazon Web Services" },' +
-      '{ "slug":"digital_ocean", "name":"Digital Ocean" },' +
-      '{ "slug":"google_cloud", "name":"Google Cloud" },' +
-      '{ "slug":"none", "name":"None" }' +
-      ' ]' +
-    '},'+
-    '{ "distribution" : [' +
-      '{ "slug":"ubuntu", "name":"Ubuntu" },' +
-      '{ "slug":"freebsd", "name":"FreeBSD" },' +
-      '{ "slug":"fedora", "name":"Fedora" },' +
-      '{ "slug":"debian", "name":"Debian" },' +
-      '{ "slug":"coreos", "name":"CoreOS" },' +
-      '{ "slug":"centos", "name":"CentOS" }' +
-      ' ]' +
-    '},'+
-    '{ "service" : [' +
-      '{ "slug":"amazon_web_services", "name":"Amazon Web Services" },' +
-      '{ "slug":"digital_ocean", "name":"Digital Ocean" },' +
-      '{ "slug":"google_cloud", "name":"Google Cloud" },' +
-      '{ "slug":"none", "name":"None" }' +
-      ' ]' +
-    '}';
-
   var $list_automation_software = ["puppet","ansible","chef"];
   var $list_server_provider = ["amazonwebservices", "digitalocean", "googlecloud", "none"];
   var $list_distribution = ["ubuntu",  "freebsd",  "fedora",  "debian",  "coreos", "centos"];
@@ -109,7 +84,7 @@ Foundation.utils.S(document).foundation({
   
   var showUserRepos = function(){
     jQuery.ajax({
-     url: '/github/user/'+jQuery.parseJSON(getCookie("userData_github")).Username+'/repos',
+     url: '/v1/github/user/'+jQuery.parseJSON(getCookie("userData_github")).Username+'/repos',
      type: "GET",
      beforeSend: function(xhr){xhr.setRequestHeader('token', jQuery.parseJSON(getCookie("userData_github")).AccessToken);},
      success: function(data) { 
@@ -339,8 +314,8 @@ Foundation.utils.S(document).foundation({
   var connectService = function(value){
     if( value.data('type') == "github" ){
       Foundation.utils.S.oauthGH({
-          path: '/github/login',
-          redirectUrl: 'github/github_oauth_cb',
+          path: '/v1/github/login',
+          redirectUrl: 'v1/github/github_oauth_cb',
           callback: function(data)
           {
               jQuery(data.document.getElementById("raw")).remove();
