@@ -16,9 +16,7 @@
       <dl class="sub-nav">
         <dd data-magellan-arrival="project-configuration" class="active"><a href="#project-configuration"><i class="step fi-wrench"></i> Project Configuration</a></dd>
         <dd data-magellan-arrival="connect-service"><a href="#connect-service"><i class="step fi-share"></i> Connect Service</a></dd>
-        <dd data-magellan-arrival="automation-software"><a href="#automation-software"><i class="step fi-upload-cloud"></i> Automation Software</a></dd>
         <dd data-magellan-arrival="server-provider"><a href="#server-provider"><i class="step fi-cloud"></i> Server Provider</a></dd>
-        <dd data-magellan-arrival="distribution"><a href="#distribution"><i class="step fi-annotate"></i> Distribution</a></dd>
         <dd data-magellan-arrival="aplications"><a href="#aplications"><i class="step fi-social-dropbox"></i> Aplications</a></dd>
         <dd data-magellan-arrival="packages"><a href="#packages"><i class="step fi-archive"></i> Packages</a></dd>
       </dl>
@@ -49,37 +47,10 @@
       
 
       <div class="row" data-magellan-destination="connect-service" id="connect-service">
-        <h2><i class="step fi-share"></i> Connect Service(s)</h2>
+        <h2><i class="step fi-share"></i> Select Repository</h2>
         <div class="large-6 medium-6 small-12 columns">
           <ul class="pricing-table" data-name="GitHub" data-type="connect-service" data-id="0">
             <li class="bullet-item"><img class="GitHub" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>GitHub <a href="#" data-type="github" class="button radius btn-connect">Connect</a> <a href="#" data-type="github" class="button success radius btn-config hide"><i class="step fi-widget"></i></a></li>
-          </ul>
-        </div>
-        <div class="large-6 medium-6 small-12 columns end">
-          <ul class="pricing-table" data-name="DigitalOcean" data-type="connect-service" data-id="1">
-            <li class="bullet-item"><img class="DigitalOcean" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img>Digital Ocean <a href="#" data-type="digital-ocean" class="button radius btn-connect">Connect</a></li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="row" data-magellan-destination="automation-software" id="automation-software" data-equalizer>
-        <h2><i class="step fi-upload-cloud"></i> Select Automation Software</h2>
-        <div class="large-4 medium-6 small-6 columns" data-equalizer-watch>
-          <ul class="pricing-table active" data-name="puppet" data-type="automation-software" data-id="0">
-            <li class="price"><img class="puppet small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">Puppet</li>
-          </ul>
-        </div>
-        <div class="large-4 medium-6 small-6 columns" data-equalizer-watch>
-          <ul class="pricing-table" data-name="ansible" data-type="automation-software" data-id="1">
-            <li class="price"><img class="ansible small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">Ansible</li>
-          </ul>
-        </div>
-        <div class="large-4 medium-6 small-6 columns end" data-equalizer-watch>
-          <ul class="pricing-table" data-name="chef" data-type="automation-software" data-id="2">
-            <li class="price"><img class="chef small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">Chef</li>
           </ul>
         </div>
       </div>
@@ -104,105 +75,6 @@
             <li class="bullet-item">Google Cloud</li>
           </ul>
         </div>
-        <div class="large-3 medium-6 small-6 columns end" data-equalizer-watch>
-          <ul class="pricing-table" data-name="none" data-type="server-provider" data-id="3">
-            <li class="price"><img class="none small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">None</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row" data-magellan-destination="distribution" id="distribution">
-        <h2><i class="step fi-annotate"></i> Select Distribution</h2>
-        <div class="large-3 medium-4 small-6 columns">
-          <ul class="pricing-table" data-name="Ubuntu" data-type="distribution" data-id="0">
-            <li class="price"><img class="Ubuntu small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">Ubuntu</li>
-            <li class="description">
-              Version
-                <select>
-                  <option value="15.04 x64" selected="selected">15.04 x64</option>
-                  <option value="15.04 x32">15.04 x32</option>
-                  <option value="14.04 x64">14.04 x64</option>
-                  <option value="14.04 x32">14.04 x32</option>
-                  <option value="12.04 x64">12.04 x64</option>
-                  <option value="12.04 x32">12.04 x32</option>
-                </select>
-            </li>
-          </ul>
-        </div>
-        <div class="large-3 medium-4 small-6 columns">
-          <ul class="pricing-table" data-name="FreeBSD" data-type="distribution" data-id="1">
-            <li class="price"><img class="FreeBSD small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">FreeBSD</li>
-            <li class="description">
-              Version
-                <select>
-                  <option value="10.01" selected="selected">10.01</option>
-                </select>
-            </li>
-          </ul>
-        </div>
-        <div class="large-3 medium-4 small-6 columns">
-          <ul class="pricing-table" data-name="Fedora" data-type="distribution" data-id="2">
-            <li class="price"><img class="Fedora small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">Fedora</li>
-            <li class="description">
-              Version
-                <select>
-                  <option value="22 x64" selected="selected">22 x64</option>
-                  <option value="21 x64">21 x64</option>
-                </select>
-            </li>
-          </ul>
-        </div>
-        <div class="large-3 medium-4 small-6 columns">
-          <ul class="pricing-table active" data-name="Debian" data-type="distribution" data-id="3">
-            <li class="price"><img class="Debian small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-            <li class="bullet-item">Debian</li>
-            <li class="description">
-              Version
-                <select>
-                  <option value="8.1 x64" selected="selected">8.1 x64</option>
-                  <option value="8.1 x32">8.1 x32</option>
-                  <option value="7.0 x64">7.0 x64</option>
-                  <option value="7.0 x32">7.0 x32</option>
-                  <option value="6.0 x64">6.0 x64</option>
-                  <option value="6.0 x32">6.0 x32</option>
-                </select>
-            </li>
-          </ul>
-        </div>
-      <div class="large-3 medium-4 small-6 columns">
-        <ul class="pricing-table" data-name="CoreOS" data-type="distribution" data-id="4">
-          <li class="price"><img class="CoreOS small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-          <li class="bullet-item">CoreOS</li>
-          <li class="description">
-            Version
-              <select>
-                <option value="758.1.0 (alpha)" selected="selected">758.1.0 (alpha)</option>
-                <option value="723.3.0 (stable)">723.3.0 (stable)</option>
-                <option value="723.3.0 (beta)">723.3.0 (beta)</option>
-              </select>
-          </li>
-        </ul>
-      </div>
-      <div class="large-3 medium-4 small-6 columns end">
-        <ul class="pricing-table" data-name="CentOS" data-type="distribution" data-id="5">
-          <li class="price"><img class="CentOS small-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"></img></li>
-          <li class="bullet-item">CentOS</li>
-          <li class="description">
-            Version
-              <select>
-                <option value="7 x64" selected="selected">7 x64</option>
-                <option value="6.7 x64">6.7 x64</option>
-                <option value="6.7 x32">6.7 x32</option>
-                <option value="5.10 x64">5.10 x64</option>
-                <option value="5.10 x32">5.10 x32</option>
-              </select>
-          </li>
-        </ul>
-      </div>
       </div>
 
       <div class="row" data-magellan-destination="aplications" id="aplications" data-equalizer>
