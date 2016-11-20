@@ -361,6 +361,10 @@ input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus
     padding: 0.5875rem 0.7rem;
 }
 
+.sub-nav dt a[class="user"], .sub-nav dd a[class="user"], .sub-nav li a[class="user"]{
+    border: 1px solid #999999;
+}
+
 [data-magellan-expedition] .sub-nav a, [data-magellan-expedition-clone] .sub-nav a{
     line-height: 3.2em;
 }
